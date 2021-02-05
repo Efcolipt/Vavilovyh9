@@ -15,7 +15,7 @@ Class ImageUpload extends Model {
   {
     return [
       [['image'], 'required'],
-      [['image'], 'file', 'extensions' => 'jpg,jpeg,png'],
+      [['image'], 'file', 'extensions' => 'jpg,jpeg,png,webp'],
     ];
   }
 

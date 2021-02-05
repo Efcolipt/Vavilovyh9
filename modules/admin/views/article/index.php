@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'description:ntext',
             'content:ntext',
+            'status',
             'date',
             [
               'format' => "html",
@@ -39,9 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
               }
             ],
             //'image',
-            //'viewed',
             //'user_id',
-            //'status',
             //'category_id',
 
             ['class' => 'yii\grid\ActionColumn'],

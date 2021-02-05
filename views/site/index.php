@@ -2,33 +2,25 @@
 
 /* @var $this yii\web\View */
 use yii\widgets\LinkPager;
-$this->title = 'Index';
+use yii\helpers\Url;
+$this->title = 'Home';
 ?>
 <!-- Hero section -->
 <section class="hero-section">
   <div class="hero-slider owl-carousel">
-    <div class="hero-item set-bg" data-setbg="/public/img/slider/1.jpg">
+    <?php foreach ($articles as $article):?>
+    <div class="hero-item set-bg" data-setbg="<?=$article->getImage();  ?>">
       <div class="container">
         <div class="row">
           <div class="col-lg-10 offset-lg-1">
-            <h2>Enter the Battle</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
-            <a href="#" class="site-btn">Read More</a>
+            <h2><?=$article->title;  ?></h2>
+            <p><?=$article->content;  ?></p>
+            <a href="<?=Url::toRoute(['site/view', 'id' => $article->id]) ?>" class="site-btn">Read More</a>
           </div>
         </div>
       </div>
     </div>
-    <div class="hero-item set-bg" data-setbg="/public/img/slider/2.jpg">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-10 offset-lg-1">
-            <h2>Enter the Battle</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. </p>
-            <a href="#" class="site-btn">Read More</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <?php endforeach; ?>
   </div>
 </section>
 <!-- Hero section end -->
@@ -47,11 +39,11 @@ $this->title = 'Index';
               <h4><?=$article->title;  ?></h4>
               <div class="post-metas">
                 <div class="post-meta">By Admin</div>
-                <div class="post-meta">in <a href="#"><?=$article->category->title;  ?></a></div>
+                <?php if(!empty($article->category->title)): ?><div class="post-meta">in <a href="<?= Url::toRoute(['site/category', 'id' => $article->category->id]);  ?>"><?=$article->category->title;  ?></a></div><?php endif; ?>
                 <div class="post-meta"><?=(int)$article->viewed;  ?> Shows</div>
               </div>
-              <p><?=$article->description;  ?></p>
-              <a href="#" class="read-more">Read More</a>
+              <p><?=$article->content;  ?></p>
+              <a href="<?=Url::toRoute(['site/view', 'id' => $article->id]) ?>" class="read-more">Read More</a>
             </div>
           </article>
           <?php endforeach; ?>
@@ -62,40 +54,12 @@ $this->title = 'Index';
             ]);
             ?>
       </div>
-      <div class="col-lg-4 sidebar">
-        <!-- <div class="sb-widget">
-          <form class="sb-search">
-            <input type="text" placeholder="Search">
-          </form>
-        </div> -->
-        <div class="sb-widget">
-          <h2 class="sb-title">Categories</h2>
-          <ul class="sb-cata-list">
-            <?php foreach($categories as $category): ?>
-            <li><a href=""><?=$category->title; ?><span><?= (int)$category->getArticlesCount(); ?></span></a></li>
-            <?php endforeach; ?>
-          </ul>
-        </div>
-        <div class="sb-widget">
-          <h2 class="sb-title">Popular News</h2>
-          <div class="latest-news-widget">
-            <?php foreach($populars as $article): ?>
-            <div class="ln-item">
-              <img src="<?=$article->getImage();  ?>" alt="">
-              <div class="ln-text">
-                <div class="ln-date"><?=$article->getDate();  ?></div>
-                <h6><?=$article->title;  ?></h6>
-                <div class="ln-metas">
-                  <div class="ln-meta">By Admin</div>
-                  <div class="ln-meta">in <a href="#"><?=$article->category->title;  ?></a></div>
-                  <div class="ln-meta"><?=(int)$article->viewed;  ?> Shows</div>
-                </div>
-              </div>
-            </div>
-            <?php endforeach; ?>
-          </div>
-        </div>
-      </div>
+      <?= $this->render('/partials/sidebar', [
+        "articles" => $data['articles'],
+        "pagination" => $data['pagination'] ,
+        "populars" => $populars ,
+        "categories" => $categories
+      ]); ?>
     </div>
   </div>
 </section>

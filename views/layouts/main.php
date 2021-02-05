@@ -5,11 +5,11 @@
 
 use app\widgets\Alert;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\PublicAsset;
-
 PublicAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -19,6 +19,7 @@ PublicAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -34,17 +35,24 @@ PublicAsset::register($this);
 
 <!-- Header section -->
 <header class="header-section">
-  <a href="index.html" class="site-logo">
+  <a href="<?= Url::toRoute(['site/index'])?>" class="site-logo">
     <img src="/public/img/logo.png" alt="logo">
   </a>
   <ul class="main-menu">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="characters.html">Characters</a></li>
-    <li><a href="game.html">Games</a></li>
-    <li><a href="reviews.html">Reviews</a></li>
-    <li><a href="news.html">News</a></li>
-    <li><a href="single-post.html">Page</a></li>
-    <li><a href="single-post.html">Login</a></li>
+    <li><a href="<?= Url::toRoute(['site/index'])?>">Home</a></li>
+    <?php if(Yii::$app->user->isGuest):?>
+      <li><a href="<?= Url::toRoute(['auth/login'])?>">Login</a></li>
+      <li><a href="<?= Url::toRoute(['auth/signup'])?>">Register</a></li>
+  <?php else: ?>
+    <li>
+      <?= Html::beginForm(['/auth/logout'], 'post')
+      . Html::submitButton(
+          'Logout (' . Yii::$app->user->identity->name . ')',
+          ['class' => 'btn btn-link logout', 'style'=>"padding-top:10px;"]
+      )
+      . Html::endForm() ?>
+      </li>
+  <?php endif;?>
   </ul>
 </header>
 <!-- Header section end -->

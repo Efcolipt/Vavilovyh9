@@ -27,37 +27,26 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Главная', 'url' => ['/admin/default/index']],
-            ['label' => 'Статьи', 'url' => ['/admin/article/index']],
-            ['label' => 'Категории', 'url' => ['/admin/category/index']],
-            ['label' => 'Тэги', 'url' => ['/admin/tag/index']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Вход', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Выход (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
+  <?php
+     NavBar::begin([
+         'brandLabel' => 'My Company',
+         'brandUrl' => Yii::$app->homeUrl,
+         'options' => [
+             'class' => 'navbar-inverse navbar-fixed-top',
+         ],
+     ]);
+     echo Nav::widget([
+         'options' => ['class' => 'navbar-nav navbar-right'],
+         'items' => [
+             ['label' => 'Home', 'url' => ['/admin/default/index']],
+             ['label' => 'Articles', 'url' => ['/admin/article/index']],
+             ['label' => 'Commentaries', 'url' => ['/admin/comment/index']],
+             ['label' => 'Categories', 'url' => ['/admin/category/index']],
+             ['label' => 'Tag', 'url' => ['/admin/tag/index']]
+         ],
+     ]);
+     NavBar::end();
+ ?>
 
     <div class="container">
         <?= Breadcrumbs::widget([
@@ -71,7 +60,6 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>

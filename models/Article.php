@@ -36,11 +36,15 @@ class Article extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'required'],
+            [['title','status'], 'required'],
             [['title', 'description', 'content'], 'string'],
+            [['title'], 'string' , 'max' => 255],
             [['date'], 'date', 'format' => 'php:Y-m-d'],
             [['date'], 'default', 'value' => date('Y-m-d')],
-            [['title'], 'string' , 'max' => 255],
+            [['image'], 'default', 'value' => '/uploads/no-image.png'],
+            [['category_id','status'], 'number'],
+            [['viewed'], 'default', 'value' => 0],
+
         ];
     }
 
@@ -61,6 +65,12 @@ class Article extends \yii\db\ActiveRecord
             'status' => 'Status',
             'category_id' => 'Category ID',
         ];
+    }
+
+    public function saveArticle()
+    {
+      $this->user_id = Yii::$app->user->id;
+      return  $this->save();
     }
 
     public function saveImage($filename)
@@ -99,7 +109,7 @@ class Article extends \yii\db\ActiveRecord
           return true;
         }
     }
-    public function getTags()
+    public  function getTags()
     {
         return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
             ->viaTable('article_tag', ['article_id' => 'id']);
@@ -133,7 +143,7 @@ class Article extends \yii\db\ActiveRecord
 
     public static function getAll($pageSize = 4)
     {
-      $query = Article::find();
+      $query = Article::find()->where(['status' => 1]);
       $countQuery = clone $query;
       $pagination = new Pagination(['totalCount' => $countQuery->count(), "pageSize" => $pageSize]);
       $articles = $query->offset($pagination->offset)
@@ -146,7 +156,35 @@ class Article extends \yii\db\ActiveRecord
     }
 
     public static function getPopulars(){
-      return Article::find()->orderBy('viewed desc')->limit(4)->all();
+      return Article::find()->orderBy('viewed desc')->where(['status' => 1])->limit(4)->all();
     }
+
+
+    public function getComments()
+    {
+        return $this->hasMany(Comment::className(), ['article_id'=>'id']);
+    }
+
+    public function getArticleComments()
+    {
+        return $this->getComments()->where(['status'=>1])->all();
+    }
+
+    public function getArticleTags()
+    {
+        return $this->getTags()->all();
+    }
+
+    public function getAuthor()
+    {
+        return $this->hasOne(User::className(), ['id'=>'user_id']);
+    }
+
+    public function viewedCounter()
+    {
+        $this->viewed += 1;
+        return $this->save(false);
+    }
+
 
 }

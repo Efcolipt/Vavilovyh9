@@ -21,6 +21,7 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'app\models\User',
+            'loginUrl' => ['auth/login'],
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -50,12 +51,12 @@ $config = [
             ],
         ],
     ],
-    'params' => $params,
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\Module',
         ],
     ],
+    'params' => $params,
 ];
 
 if (YII_ENV_DEV) {

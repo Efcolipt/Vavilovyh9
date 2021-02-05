@@ -77,13 +77,45 @@ class SiteController extends Controller
     }
 
     /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+     public function actionComment($id)
+     {
+         $model = new CommentForm();
+
+         if(Yii::$app->request->isPost)
+         {
+             $model->load(Yii::$app->request->post());
+             if($model->saveComment($id))
+             {
+                 Yii::$app->getSession()->setFlash('comment', 'Your comment will be added soon!');
+                 return $this->redirect(['site/view','id'=>$id]);
+             }
+         }
+     }
+
+    /**
      * Displays Single Page.
      *
      * @return string
      */
-    public function actionView()
+    public function actionView($id)
     {
-        return $this->render('single');
+        $article = new Article();
+
+        $article = $article->findOne($id);
+        $populars = $article->getPopulars();
+        $comments = $article->getArticleComments();
+
+        $categories = Category::getAll();
+        $commentForm = new CommentForm();
+
+        $tags = $article->getArticleTags();
+
+        $article->viewedCounter();
+        return $this->render('single',compact('article','tags','categories','populars','comments','commentForm'));
     }
 
     /**
@@ -91,9 +123,19 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionCategory()
+    public function actionCategory($id)
     {
-        return $this->render('category');
+      $data = Category::getArticlesByCategory($id);
+      $categories = Category::getAll();
+      $populars = Article::getPopulars();
+
+
+      return $this->render('category', [
+        "articles" => $data['articles'],
+        "pagination" => $data['pagination'] ,
+        "populars" => $populars ,
+        "categories" => $categories
+      ]);
     }
 
     /**
