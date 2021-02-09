@@ -47,8 +47,7 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => [],
         ],
     ],
     'modules' => [
@@ -57,6 +56,7 @@ $config = [
         ],
     ],
     'params' => $params,
+    
 ];
 
 if (YII_ENV_DEV) {

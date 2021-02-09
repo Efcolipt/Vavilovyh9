@@ -30,11 +30,11 @@ class Module extends \yii\base\Module
                     throw new \yii\web\NotFoundHttpException();
                 },
                 'rules' => [
-                  'allow' =>  true,
-                      'matchCallback' =>  function($rule, $action)
-                      {
+                    'allow' =>  true,
+                    'matchCallback' =>  function($rule, $action)
+                    {
                           return Yii::$app->user->identity->isAdmin;
-                      }
+                    }
                 ],
             ]
         ];
