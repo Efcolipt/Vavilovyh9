@@ -1803,3 +1803,10 @@ Responsive
 		font-size: 36px;
 	}
 }
+
+.site-error{
+  margin-top: 180px;
+	margin-bottom: 100px;
+	padding-left: 40px;
+	padding-right: 40px;
+}

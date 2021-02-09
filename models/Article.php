@@ -93,7 +93,7 @@ class Article extends \yii\db\ActiveRecord
     public function beforeDelete()
     {
       $this->deleteImage();
-      return parrent::beforeDelete();
+      return parent::beforeDelete();
     }
 
     public function getCategory()
