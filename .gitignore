@@ -31,3 +31,10 @@ tests/_support/_generated
 
 #vagrant folder
 /.vagrant
+
+
+/config/db.php
+composer.lock
+
+/runtime
+/web/.htaccess

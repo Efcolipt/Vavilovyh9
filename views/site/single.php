@@ -34,7 +34,7 @@ $this->title =  $article->title; ;
           <?php endforeach; ?>
         </p>
         <hr>
-          <?=$this->render('/partials/comment', [
+          <?=$this->render('/partials/comment',  [
                'article'=>$article,
                'comments'=>$comments,
                'commentForm'=>$commentForm,
@@ -42,8 +42,8 @@ $this->title =  $article->title; ;
         </article>
       </div>
       <?= $this->render('/partials/sidebar', [
-        "articles" => $data['articles'],
-        "pagination" => $data['pagination'] ,
+        "articles" => $articles,
+        "pagination" => $pagination ,
         "populars" => $populars ,
         "categories" => $categories
       ]); ?>

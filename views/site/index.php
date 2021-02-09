@@ -55,8 +55,8 @@ $this->title = 'Home';
             ?>
       </div>
       <?= $this->render('/partials/sidebar', [
-        "articles" => $data['articles'],
-        "pagination" => $data['pagination'] ,
+        "articles" => $articles,
+        "pagination" => $pagination,
         "populars" => $populars ,
         "categories" => $categories
       ]); ?>
