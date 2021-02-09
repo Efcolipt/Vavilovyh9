@@ -42,7 +42,7 @@ $this->title =  $article->title; ;
         </article>
       </div>
       <?= $this->render('/partials/sidebar', [
-        "articles" => $articles,
+        "articles" => $article,
         "populars" => $populars ,
         "categories" => $categories
       ]); ?>
