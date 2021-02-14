@@ -5,6 +5,8 @@ namespace app\models;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\data\Pagination;
+use app\models\ImageUpload;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "article".
@@ -42,7 +44,8 @@ class Article extends \yii\db\ActiveRecord
             [['date'], 'date', 'format' => 'php:Y-m-d'],
             [['date'], 'default', 'value' => date('Y-m-d')],
             [['image'], 'default', 'value' => '/uploads/no-image.png'],
-            [['category_id','status'], 'number'],
+            [['category_id'], 'number'],
+            [['status'], 'boolean'],
             [['viewed'], 'default', 'value' => 0],
 
         ];
@@ -55,15 +58,15 @@ class Article extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'description' => 'Description',
-            'content' => 'Content',
-            'date' => 'Date',
-            'image' => 'Image',
-            'viewed' => 'Viewed',
-            'user_id' => 'User ID',
-            'status' => 'Status',
-            'category_id' => 'Category ID',
+            'title' => 'Заголовок',
+            'description' => 'Контент',
+            'content' => 'Краткое описание',
+            'date' => 'Дата выставления поста',
+            'image' => 'Обложка поста',
+            'viewed' => 'Просмотры',
+            'user_id' => 'ID выставивший статью',
+            'status' => 'Статус публикации',
+            'category_id' => 'Привязан к категории',
         ];
     }
 

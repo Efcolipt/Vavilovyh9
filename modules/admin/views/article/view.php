@@ -16,14 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Set image', ['set-image', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
-        <?= Html::a('Set Category', ['set-category', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
-        <?= Html::a('Set Tags', ['set-tags', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Обновить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Установить категорию', ['set-category', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
+        <?= Html::a('Установить тэг', ['set-tags', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Уверены что хотите удалить?',
                 'method' => 'post',
             ],
         ]) ?>

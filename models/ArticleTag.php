@@ -43,8 +43,8 @@ class ArticleTag extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'article_id' => 'Article ID',
-            'tag_id' => 'Tag ID',
+            'article_id' => 'ID привязанного поста',
+            'tag_id' => 'ID привязанного тэга',
         ];
     }
 

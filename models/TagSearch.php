@@ -19,6 +19,7 @@ class TagSearch extends Tag
         return [
             [['id'], 'integer'],
             [['title'], 'safe'],
+            [['color'], 'safe'],
         ];
     }
 

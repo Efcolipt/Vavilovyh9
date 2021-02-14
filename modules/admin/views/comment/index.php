@@ -8,7 +8,7 @@ use yii\helpers\Url;
 /* @var $searchModel app\models\CategorySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Comments';
+$this->title = 'Комментарии';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
@@ -22,9 +22,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <thead>
                 <tr>
                     <td>#</td>
-                    <td>Author</td>
-                    <td>Text</td>
-                    <td>Action</td>
+                    <td>Автор</td>
+                    <td>Контент</td>
+                    <td>Действия</td>
                 </tr>
             </thead>
 
@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php //else:?>
                                 <!-- <a class="btn btn-success" href="<?= Url::toRoute(['comment/allow', 'id'=>$comment->id]);?>">Allow</a> -->
                             <?php //endif?>
-                            <a class="btn btn-danger" href="<?= Url::toRoute(['comment/delete', 'id' => $comment->id]); ?>">Delete</a>
+                            <a class="btn btn-danger" href="<?= Url::toRoute(['comment/delete', 'id' => $comment->id]); ?>">Удалить</a>
                         </td>
                     </tr>
                 <?php endforeach;?>

@@ -50,10 +50,10 @@ class Comment extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'text' => 'Text',
-            'user_id' => 'User ID',
-            'article_id' => 'Article ID',
-            'status' => 'Status',
+            'text' => 'Контент',
+            'user_id' => 'ID адресанта',
+            'article_id' => 'ID адресата',
+            'status' => 'Статус публикации',
         ];
     }
 
