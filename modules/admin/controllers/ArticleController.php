@@ -141,7 +141,7 @@ class ArticleController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    // 
+    //
     // public function actionSetImage($id){
     //   $model = new ImageUpload;
     //   if (Yii::$app->request->isPost) {
@@ -160,7 +160,6 @@ class ArticleController extends Controller
       $article = $this->findModel($id);
       $selectedCategory = ($article->category) ? $article->category->id : '0';
       $categories = ArrayHelper::map(Category::find()->all(), 'id', 'title');
-
       if (Yii::$app->request->isPost) {
         $category = Yii::$app->request->post("category");
         if ($article->saveCategory($category)) return $this->redirect(['view', 'id' => $article->id]);
@@ -180,7 +179,7 @@ class ArticleController extends Controller
         return $this->redirect(['view', 'id' => $article->id]);
       }
 
-      return $this->render('tags', compact('article','tags'));
+      return $this->render('tags', compact('selectedTags','article','tags'));
 
     }
 }
