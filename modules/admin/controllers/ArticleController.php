@@ -2,10 +2,10 @@
 
 namespace app\modules\admin\controllers;
 
+use Yii;
 use app\models\Category;
 use app\models\Article;
 use app\models\Tag;
-use Yii;
 use app\models\ImageUpload;
 use app\models\ArticleSearch;
 use yii\web\Controller;
@@ -71,8 +71,13 @@ class ArticleController extends Controller
     public function actionCreate()
     {
         $model = new Article();
-
+        $imageUploadModel = new ImageUpload();
+        $file = UploadedFile::getInstance($model,'image');
         if ($model->load(Yii::$app->request->post()) && $model->saveArticle()) {
+            if ($file) {
+              $model->saveImage($imageUploadModel->uploadFile($file , $model->image));
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -92,8 +97,12 @@ class ArticleController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $imageUploadModel = new ImageUpload();
+        $file = UploadedFile::getInstance($model,'image');
         if ($model->load(Yii::$app->request->post()) && $model->saveArticle()) {
+            if ($file) {
+              $model->saveImage($imageUploadModel->uploadFile($file , $model->image));
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -132,19 +141,19 @@ class ArticleController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-
-
-    public function actionSetImage($id){
-      $model = new ImageUpload;
-      if (Yii::$app->request->isPost) {
-        $article = $this->findModel($id);
-        $file = UploadedFile::getInstance($model,'image');
-        if ($article->saveImage($model->uploadFile($file , $article->image))) {
-          return $this->redirect(['view', 'id' => $article->id]);
-        }
-      }
-      return $this->render('image',compact('model'));
-    }
+    // 
+    // public function actionSetImage($id){
+    //   $model = new ImageUpload;
+    //   if (Yii::$app->request->isPost) {
+    //     $article = $this->findModel($id);
+    //     $file = UploadedFile::getInstance($model,'image');
+    //     debug($file);
+    //     if ($article->saveImage($model->uploadFile($file , $article->image))) {
+    //       return $this->redirect(['view', 'id' => $article->id]);
+    //     }
+    //   }
+    //   return $this->render('image',compact('model'));
+    // }
 
 
     public function actionSetCategory($id){

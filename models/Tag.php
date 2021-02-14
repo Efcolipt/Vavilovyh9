@@ -27,6 +27,7 @@ class Tag extends \yii\db\ActiveRecord
     {
         return [
             [['title'], 'string', 'max' => 255],
+            [['color'], 'string', 'max' => 255],
         ];
     }
 
@@ -37,7 +38,8 @@ class Tag extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
+            'title' => 'Заголовок',
+            'color' => 'Цвет',
         ];
     }
     public function getArticles()

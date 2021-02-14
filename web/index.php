@@ -11,6 +11,7 @@ function debug($data){
   echo "<pre>";
   print_r($data);
   echo "</pre>";
+  exit;
 }
 $config = require __DIR__ . '/../config/web.php';
 
