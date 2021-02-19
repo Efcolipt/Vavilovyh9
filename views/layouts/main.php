@@ -35,9 +35,6 @@ PublicAsset::register($this);
 
 <!-- Header section -->
 <header class="header-section">
-  <a href="<?= Url::toRoute(['site/index'])?>" class="site-logo">
-    <img src="/public/img/logo.png" alt="logo">
-  </a>
   <ul class="main-menu">
     <li><a href="<?= Url::toRoute(['site/index'])?>">Home</a></li>
     <?php if(Yii::$app->user->isGuest):?>
