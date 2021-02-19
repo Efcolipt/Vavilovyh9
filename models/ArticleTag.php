@@ -44,7 +44,7 @@ class ArticleTag extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'article_id' => 'ID привязанного поста',
-            'tag_id' => 'ID привязанного тэга',
+            'tag_id' => 'ID привязанного тега',
         ];
     }
 
@@ -63,4 +63,32 @@ class ArticleTag extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Article::className(), ['id' => 'article_id']);
     }
+
+    public function getArticles()
+    {
+      return $this->hasMany(Article::className(), ['category_id' => 'id'])->where(['status' => 1]);
+    }
+
+
+    public function getArticlesCount()
+    {
+      return (int)$this->getArticles()->count();
+    }
+
+
+
+    public static function getArticlesByCategory($id,$pageSize = 4)
+    {
+      $query = Article::find()->where(['category_id' => $id,'status' => 1]);
+      $countQuery = clone $query;
+      $pagination = new Pagination(['totalCount' => $countQuery->count(), "pageSize" => $pageSize]);
+      $articles = $query->offset($pagination->offset)
+        ->limit($pagination->limit)
+        ->all();
+      $data['articles'] = $articles;
+      $data['pagination'] = $pagination;
+
+      return $data;
+    }
+
 }

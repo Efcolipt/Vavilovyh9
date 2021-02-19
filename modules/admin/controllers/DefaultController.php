@@ -3,7 +3,8 @@
 namespace app\modules\admin\controllers;
 
 use yii\web\Controller;
-
+use app\models\ArticleSearchLatest;
+use Yii;
 /**
  * Default controller for the `admin` module
  */
@@ -15,6 +16,12 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+      $searchModel = new ArticleSearchLatest();
+      $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+      return $this->render('index', [
+          'searchModel' => $searchModel,
+          'dataProvider' => $dataProvider,
+      ]);
     }
+
 }

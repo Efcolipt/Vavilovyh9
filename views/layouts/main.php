@@ -33,11 +33,7 @@ PublicAsset::register($this);
 
 
 
-<!-- Header section -->
 <header class="header-section">
-  <a href="<?= Url::toRoute(['site/index'])?>" class="site-logo">
-    <img src="/public/img/logo.png" alt="logo">
-  </a>
   <ul class="main-menu">
     <li><a href="<?= Url::toRoute(['site/index'])?>">Home</a></li>
     <?php if(Yii::$app->user->isGuest):?>
@@ -56,99 +52,84 @@ PublicAsset::register($this);
   </ul>
 </header>
 <!-- Header section end -->
-
-<?=$content?>
-
+<div class="body-wrap">
+  <?=$content?>
 <!-- Footer section -->
-<div class="footer-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3">
-        <div class="footer-widget">
-          <div class="about-widget">
-            <img src="/public/img/logo.png" alt="">
-            <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo. Morbi id dictum quam, ut commodo.</p>
+  <footer class="footer container">
+    <div class="footer__docs">
+      <a href="#" class="footer__link">Положение о защите и хранении персональных данных</a>
+      <a href="#" class="footer__link">Положение о ревизионной комиссии</a>
+    </div>
+    <div class="footer__wrapper">
+      <p class="footer__copyright">
+        © 2015 ... <?= date("Y") ?>
+      </p>
+      <a href="mailto:mail@vavilovyh9.ru" class="footer__link">mail@vavilovyh9.ru</a>
+    </div>
+  </footer>
+  <section class="water-form js-popup">
+    <div class="water-form__wrapper">
+      <div class="water-form__close js-close-popup">X</div>
+      <h2 class="water-form__title">Укажите целые значения со счётчиков</h2>
+      <form action="/" method="POST" class="water-form__form js-form" enctype="multipart/form-data">
+        <label class="water-form__box">
+          <input type="text" class="water-form__input water-form__input--number" data-field-type="text-all"
+            name="hotwater">
+          <span class="water-form__label">Горячая вода</span>
+        </label>
+        <label class="water-form__box">
+          <input type="text" class="water-form__input water-form__input--number" data-field-type="text-all"
+            name="coldwater">
+          <span class="water-form__label">Холодная вода</span>
+        </label>
+        <label class="water-form__box">
+          <input type="text" class="water-form__input water-form__input--number" data-field-type="text-all"
+            name="appart">
+          <span class="water-form__label">Номер квартиры</span>
+        </label>
+        <label class="water-form__box">
+          <input type="text" class="water-form__input" data-field-type="text-all" name="name">
+          <span class="water-form__label">Фамилия</span>
+        </label>
+        <label class="water-form__box">
+          <input type="email" class="water-form__input" data-field-type="email" name="email">
+          <span class="water-form__label">E-mail</span>
+        </label>
+        <div class="water-form__inner">
+          <div class="water-form__btn-box autoform-submit-invalid">
+            <button class="water-form__btn" type="submit">Отправить</button>
+            <span class="autoform-form-text-error"></span>
+            <div class="autoforms_errors">скрыто</div>
           </div>
+          <p class="water-form__desc">
+            Все поля обязательны <br>
+            для заполнения
+          </p>
         </div>
-      </div>
-      <div class="col-lg-2 col-sm-6">
-        <div class="footer-widget">
-          <h2 class="fw-title">Usfull Links</h2>
-          <ul>
-            <li><a href="#">Games</a></li>
-            <li><a href="#">testimonials</a></li>
-            <li><a href="#">Reviews</a></li>
-            <li><a href="#">Characters</a></li>
-            <li><a href="#">Latest news</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-2 col-sm-6">
-        <div class="footer-widget">
-          <h2 class="fw-title">Services</h2>
-          <ul>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Become a writer</a></li>
-            <li><a href="#">Jobs</a></li>
-            <li><a href="#">FAQ</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-2 col-sm-6">
-        <div class="footer-widget">
-          <h2 class="fw-title">Careeres</h2>
-          <ul>
-            <li><a href="#">Donate</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Subscriptions</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Our team</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="footer-widget fw-latest-post">
-          <h2 class="fw-title">Usfull Links</h2>
-          <div class="latest-news-widget">
-            <div class="ln-item">
-              <div class="ln-text">
-                <div class="ln-date">April 1, 2019</div>
-                <h6>10 Amazing new games</h6>
-                <div class="ln-metas">
-                  <div class="ln-meta">By Admin</div>
-                  <div class="ln-meta">in <a href="#">Games</a></div>
-                  <div class="ln-meta">3 Comments</div>
-                </div>
+        <div class="answer">
+          <div class="answer__item">
+            <div class="answer__box">
+              <div class="answer__inner">
+                <p class="answer__text">
+                  Не удалось отправить форму, попробуйте через некоторое время. Мы уже знаем об этом и скоро решим
+                  проблему.
+                </p>
               </div>
             </div>
-            <div class="ln-item">
-              <div class="ln-text">
-                <div class="ln-date">April 1, 2019</div>
-                <h6>10 Amazing new games</h6>
-                <div class="ln-metas">
-                  <div class="ln-meta">By Admin</div>
-                  <div class="ln-meta">in <a href="#">Games</a></div>
-                  <div class="ln-meta">3 Comments</div>
-                </div>
+          </div>
+          <div class="answer__item">
+            <div class="answer__box">
+              <div class="answer__inner">
+                <p class="answer__text">
+                  Спасибо за ваше сообщение — председатель ответит вам в течение трёх рабочих дней.
+                </p>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
-  </div>
-  <div class="social-links-warp">
-    <div class="container">
-      <div class="social-links">
-        <a href="#"><i class="fa fa-instagram"></i><span>instagram</span></a>
-        <a href="#"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
-        <a href="#"><i class="fa fa-facebook"></i><span>facebook</span></a>
-        <a href="#"><i class="fa fa-twitter"></i><span>twitter</span></a>
-        <a href="#"><i class="fa fa-youtube"></i><span>youtube</span></a>
-      </div>
-    </div>
-  </div>
+  </section>
 </div>
 <!-- Footer section end -->
 

@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <?php Yii::$app->formatter->locale = 'ru-RU'; ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -30,19 +30,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'description:ntext',
             'content:ntext',
-            'status',
-            'date',
+            'date:datetime',
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' => function($data){
+                    return $data->status ? '<span class="text-success">Показывается</span>' : '<span class="text-danger">Не показывается</span>';
+                }
+            ],
             [
               'format' => "html",
-              'label' => 'Image',
+              'label' => 'Обложка статьи',
               'value' => function($data){
                 return Html::img($data->getImage(), ['width' => 200]);
               }
             ],
-            //'image',
-            //'user_id',
-            //'category_id',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

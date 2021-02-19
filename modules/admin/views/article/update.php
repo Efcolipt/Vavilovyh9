@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Article */
 
 $this->title = 'Изменить статью: ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Articles', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Статьи', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'selectedTags' => $selectedTags,
+        'tags' => $tags,
     ]) ?>
 
 </div>

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Article */
 
 $this->title = 'Добавить статью';
-$this->params['breadcrumbs'][] = ['label' => 'Articles', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Статьи', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="article-create">
@@ -15,6 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'selectedTags' => $selectedTags,
+        'tags' => $tags,
     ]) ?>
 
 </div>

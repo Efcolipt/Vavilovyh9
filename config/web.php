@@ -4,19 +4,28 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
+    'language' => 'ru-RU',
+    'timeZone' => 'Europe/Moscow',
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'language' => 'ru',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
-        'request' => [
+      'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'dateFormat' => 'dd MMMM yyyy',
+            'defaultTimeZone' => 'Europe/Moscow',
+            'datetimeFormat' => 'php:d M Y',
+            'locale' => 'ru'
+        ],
+          'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'HeJiNhp5ETxCCvl54Bw49Ia58phTTAcA',
         ],
+
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -44,6 +53,7 @@ $config = [
                 ],
             ],
         ],
+
         'db' => $db,
         'urlManager' => [
             'enablePrettyUrl' => true,

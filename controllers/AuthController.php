@@ -7,13 +7,16 @@ use app\models\SignupForm;
 use app\models\User;
 use Yii;
 use yii\web\Controller;
+use yii\helpers\Url;
 
 class AuthController extends Controller
 {
+
     public function actionLogin()
     {
+
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->goBack();
         }
 
         $model = new LoginForm();
@@ -32,9 +35,9 @@ class AuthController extends Controller
      */
     public function actionLogout()
     {
+        $back = Yii::$app->request->referrer;
         Yii::$app->user->logout();
-
-        return $this->goHome();
+        return $this->redirect($back);
     }
 
 
@@ -54,28 +57,4 @@ class AuthController extends Controller
         return $this->render('signup', ['model'=>$model]);
     }
 
-    // public function actionLoginVk($uid, $first_name, $photo)
-    // {
-    //     $user = new User();
-    //     if($user->saveFromVk($uid, $first_name, $photo))
-    //     {
-    //         return $this->redirect(['site/index']);
-    //     }
-    // }
-
-    // public function actionTest()
-    // {
-    //     $user = User::findOne(1);
-    //
-    //     Yii::$app->user->logout();
-    //
-    //     if(Yii::$app->user->isGuest)
-    //     {
-    //         echo 'Пользователь гость';
-    //     }
-    //     else
-    //     {
-    //         echo 'Пользователь Авторизован';
-    //     }
-    // }
 }

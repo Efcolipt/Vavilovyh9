@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\Tag;
 use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model app\models\Article */
@@ -14,19 +16,20 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'description')->textarea(['rows' => 6,'class' => 'form-control HTML']) ?>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'content')->textarea(['rows' => 6,'class' => 'form-control HTML']) ?>
 
     <?= $form->field($model, 'image')->fileInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'date')->textInput()->widget(DatePicker::classname(), [
+    <?= Html::dropDownList('tags', $selectedTags, $tags, ['class' => 'form-control', 'multiple' => true]);  ?>
+    <?= $form->field($model, 'date')->widget(DatePicker::classname(),
+    [
       'name' => 'date',
-      'value' => date('Y-m-d'),
-      'options' => ['placeholder' => 'Select issue date'],
-      'language' => 'ru',
+      'type' => DatePicker::TYPE_COMPONENT_PREPEND ,
+      'removeButton' => false,
       'pluginOptions' => [
-        'format' => 'yyyy-mm-dd',
+        'format' => 'dd.mm.yyyy',
         'autoclose'=>true,
         'todayHighlight' => true,
       ]

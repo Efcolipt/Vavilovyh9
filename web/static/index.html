@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ТСЖ «Вавиловых 9»</title>
+  <link rel="stylesheet" href="/css/style.min.css">
+</head>
+
+
+<body>
+  <div class="body-wrap">
+    <header class="header header--main container">
+      <div class="header__wrapper">
+        <div class="header__logo">
+          <h2 class="header__title">
+            <a class="header__t-link">ТСЖ «Вавиловых 9»</a>
+          </h2>
+        </div>
+        <div class="header__contacts">
+          <p class="header__contact-desc">Диспетчер</p>
+          <a href="tel:+79111813960" class="header__phone">+7 (911) 181-39-60</a>
+        </div>
+      </div>
+      <div class="header__wrapper header__wrapper--bottom">
+        <div class="header__forms">
+          <div class="header__link-box header__link-box--water-form">
+            <a href="#" class="header__link js-open-popup">Сдать показания на воду</a>
+          </div>
+          <div class="header__link-box header__link-box--feedback">
+            <a href="#" class="header__link">Oтзывы и предложения</a>
+          </div>
+        </div>
+        <p class="header__reception">
+          Приём собственников:<br>
+          Управляющий — каждый четверг с 16:00 до 19:00.<br>
+          Председатель и бухгалтер — каждый первый и третий четверг месяца.
+        </p>
+      </div>
+    </header>
+    <main class="main container">
+      <section class="main__blanks blanks">
+        <h2 class="blanks__title">Бланки заявлений:</h2>
+        <a href="#" class="blanks__link">Бесконтактный ключ</a>
+        <a href="#" class="blanks__link">Вступление в ТСЖ</a>
+      </section>
+      <div class="main__wrapper">
+        <section class="main__news news">
+          <h2 class="visually-hidden">Новости</h2>
+          <ul class="news__list">
+            <li class="news__item">
+              <time class="news__time" datetime="2020-06-28">28 июня 2020</time>
+              <h3 class="news__title">
+                Итоги общего собрания собственников
+              </h3>
+              <p class="news__text">
+                18 июня завершилось годовое общее собрание собственников жилья, которое проводилось в форме
+                очно-заочного
+                голосования...
+              </p>
+              <a href="#" class="news__link">Подробнее</a>
+            </li>
+            <li class="news__item">
+              <time class="news__time" datetime="2020-06-13">13 июня 2020</time>
+              <h3 class="news__title">
+                Итоги общего собрания членов ТСЖ
+              </h3>
+              <p class="news__text">
+                11 июня завершилось годовое отчётно-перевыборное собрание членов ТСЖ «Вавиловых 9», которое проводилось
+                в
+                форме очно-заочного голосования...
+              </p>
+              <a href="#" class="news__link">Подробнее</a>
+            </li>
+            <li class="news__item">
+              <time class="news__time" datetime="2020-05-11">11 мая 2020</time>
+              <h3 class="news__title">
+                21 мая общее собрание собственников и членов ТСЖ
+              </h3>
+              <p class="news__text">
+                По инициативе членов Правления ТСЖ с 21 мая 2020 года по 31 июля 2019 года состоятся два собрания —
+                годовое отчётно-перевыборное собрание членов ТСЖ и годовое общее собрание собственников жилья. Оба
+                собрания пройдут в форме очно-заочного голосования...
+              </p>
+              <a href="#" class="news__link">Подробнее</a>
+            </li>
+            <li class="news__item">
+              <time class="news__time" datetime="2017-09-10">10 сентября 2017</time>
+              <h3 class="news__title">
+                Бесконтактные ключи к парадной двери
+              </h3>
+              <img src="/img/upload/10092017.png" width="450" height="311" alt="Примеры ключей">
+              <p class="news__text">
+                <a href="#" class="news__link">Бланк заявления</a> можно скачать на сайте, либо взять бланк у
+                диспетчера...
+              </p>
+              <a href="#" class="news__link">Подробнее</a>
+            </li>
+          </ul>
+        </section>
+        <section class="main__question question">
+          <h2 class="question__title">Задайте вопрос председателю</h2>
+          <p class="question__desc">Вы получите ответ в течение трёх рабочих дней.</p>
+          <form action="/" method="POST" class="question__form js-form" enctype="multipart/form-data">
+            <label for="seccheck1" class="visually-hidden">Проверка</label>
+            <input type="text" name="seccheck" id="seccheck1" class="visually-hidden" data-required="false">
+            <label for="question" class="visually-hidden">Ваш вопрос</label>
+            <textarea placeholder="Напишите, что вы хотите спросить у председателя ТСЖ или предложить для нашего дома"
+              id="question" name="question" data-field-type="text-all" class="question__input question__input--text"
+              name="question"></textarea>
+            <label for="name" class="visually-hidden">Ваше имя</label>
+            <input type="text" placeholder="Как вас зовут" data-field-type="text-all" class="question__input"
+              name="name" id="name">
+            <label for="apartment" class="visually-hidden">Из какой вы квартиры</label>
+            <input type="text" placeholder="Из какой вы квартиры" data-field-type="text-all" class="question__input"
+              name="apartment" id="apartment">
+            <label for="contact" class="visually-hidden">Как с вами связаться?</label>
+            <input type="text" placeholder="Как с вами связаться?" data-field-type="email-phone" class="question__input"
+              name="contact" id="contact">
+            <div class="question__inner">
+              <div class="question__btn-box autoform-submit-invalid">
+                <button class="question__btn" type="submit">Отправить</button>
+                <span class="autoform-form-text-error"></span>
+                <div class="autoforms_errors">скрыто</div>
+              </div>
+              <p class="question__desc question__desc--bottom">
+                Все поля обязательны <br>
+                для заполнения
+              </p>
+            </div>
+            <div class="answer">
+              <div class="js-preloader answer__preloader-wrapper">
+                <div class="answer__preloader">
+                </div>
+              </div>
+              <div class="answer__item js-fail">
+                <div class="answer__box">
+                  <div class="answer__inner">
+                    <p class="answer__text">
+                      Не удалось отправить форму, попробуйте через некоторое время. Мы уже знаем об этом и скоро решим
+                      проблему.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="answer__item js-success">
+                <div class="answer__box">
+                  <div class="answer__inner">
+                    <p class="answer__text">
+                      Спасибо за ваше сообщение — председатель ответит вам в течение трёх рабочих дней.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <p class="question__note">
+            Мы уже получили 313 сообщений
+          </p>
+        </section>
+      </div>
+    </main>
+    <footer class="footer container">
+      <div class="footer__docs">
+        <a href="#" class="footer__link">Положение о защите и хранении персональных данных</a>
+        <a href="#" class="footer__link">Положение о ревизионной комиссии</a>
+      </div>
+      <div class="footer__wrapper">
+        <p class="footer__copyright">
+          © 2015 ... 2017
+        </p>
+        <a href="mailto:mail@vavilovyh9.ru" class="footer__link">mail@vavilovyh9.ru</a>
+      </div>
+    </footer>
+  </div>
+  <section class="water-form js-popup">
+    <div class="water-form__wrapper">
+      <div class="water-form__close js-close-popup">X</div>
+      <h2 class="water-form__title">Укажите целые значения со счётчиков</h2>
+      <form action="/" method="POST" class="water-form__form js-form js-form-water" data-action="/sendmail/water.php"
+        enctype="multipart/form-data">
+        <label for="seccheck2" class="visually-hidden">Проверка</label>
+        <input type="text" name="seccheck" id="seccheck2" class="visually-hidden" data-required="false">
+        <label class="water-form__box">
+          <input type="text" class="water-form__input water-form__input--number" data-field-type="text-all"
+            name="hotwater">
+          <span class="water-form__label">Горячая вода</span>
+        </label>
+        <label class="water-form__box">
+          <input type="text" class="water-form__input water-form__input--number" data-field-type="text-all"
+            name="coldwater">
+          <span class="water-form__label">Холодная вода</span>
+        </label>
+        <label class="water-form__box">
+          <input type="text" class="water-form__input water-form__input--number" data-field-type="text-all"
+            name="appart">
+          <span class="water-form__label">Номер квартиры</span>
+        </label>
+        <label class="water-form__box">
+          <input type="text" class="water-form__input" data-field-type="text-all" name="name">
+          <span class="water-form__label">Фамилия</span>
+        </label>
+        <label class="water-form__box">
+          <input type="email" class="water-form__input" data-field-type="email" name="email">
+          <span class="water-form__label">E-mail</span>
+        </label>
+        <div class="water-form__inner">
+          <div class="water-form__btn-box autoform-submit-invalid">
+            <button class="water-form__btn" type="submit">Отправить</button>
+            <span class="autoform-form-text-error"></span>
+            <div class="autoforms_errors">скрыто</div>
+          </div>
+          <p class="water-form__desc">
+            Все поля обязательны <br>
+            для заполнения
+          </p>
+        </div>
+        <div class="answer">
+          <div class="js-preloader answer__preloader-wrapper">
+            <div class="answer__preloader">
+            </div>
+          </div>
+          <div class="answer__item js-fail">
+            <div class="answer__box">
+              <div class="answer__inner">
+                <p class="answer__text">
+                  Не удалось отправить форму, попробуйте через некоторое время. Мы уже знаем об этом и скоро решим
+                  проблему.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="answer__item js-success">
+            <div class="answer__box">
+              <div class="answer__inner">
+                <p class="answer__text">
+                  Письмо отправлено бухгалтеру.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+  <script src="/js/script.min.js"></script>
+</body>
+
+</html>

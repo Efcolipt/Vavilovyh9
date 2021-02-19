@@ -19,6 +19,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php $this->registerCssFile('/reformator/reformator.css');?>
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -29,8 +30,8 @@ AppAsset::register($this);
 <div class="wrap">
   <?php
      NavBar::begin([
-         'brandLabel' => 'Главная',
-         'brandUrl' => Yii::$app->homeUrl,
+         'brandLabel' => 'Последние 10 новостей',
+         'brandUrl' => '/admin/default/index',
          'options' => [
              'class' => 'navbar-inverse navbar-fixed-top',
          ],
@@ -38,11 +39,11 @@ AppAsset::register($this);
      echo Nav::widget([
          'options' => ['class' => 'navbar-nav navbar-right'],
          'items' => [
-             ['label' => 'Главная', 'url' => ['/admin/default/index']],
              ['label' => 'Статьи', 'url' => ['/admin/article/index']],
-             ['label' => 'Комментарии', 'url' => ['/admin/comment/index']],
-             ['label' => 'Категории', 'url' => ['/admin/category/index']],
-             ['label' => 'Тэги', 'url' => ['/admin/tag/index']]
+             // ['label' => 'Комментарии', 'url' => ['/admin/comment/index']],
+             ['label' => 'Теги', 'url' => ['/admin/tag/index']],
+             ['label' => 'Вопросы', 'url' => ['/admin/question/index']]
+
          ],
      ]);
      NavBar::end();
@@ -65,14 +66,9 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
-<?php $this->registerJsFile('/ckeditor/ckeditor.js');?>
-<?php $this->registerJsFile('/ckfinder/ckfinder.js');?>
+<?php $this->registerJsFile('/reformator/reformator.js');?>
 <script>
-    $(document).ready(function(){
-        var editor = CKEDITOR.replaceAll();
-        CKFinder.setupCKEditor( editor );
-    })
-
+    reformator.auto({bar: true})
 </script>
 </body>
 </html>

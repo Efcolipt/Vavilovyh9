@@ -5,6 +5,8 @@ namespace app\controllers;
 use app\models\Article;
 use app\models\Category;
 use app\models\CommentForm;
+use app\models\QuestionForm;
+use app\models\Question;
 use Yii;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
@@ -67,12 +69,14 @@ class SiteController extends Controller
     {
         $data = Article::getAll();
         $populars = Article::getPopulars();
-        $categories = Category::getAll();
+        $questionForm = new QuestionForm();
+        $countQuestion = Question::find()->count();
         return $this->render('index', [
           "articles" => $data['articles'],
           "pagination" => $data['pagination'] ,
           "populars" => $populars ,
-          "categories" => $categories
+          "questionForm" => $questionForm,
+          "countQuestion" => $countQuestion,
         ]);
     }
 
@@ -90,8 +94,22 @@ class SiteController extends Controller
              $model->load(Yii::$app->request->post());
              if($model->saveComment($id))
              {
-                 Yii::$app->getSession()->setFlash('comment', 'Your comment will be added soon!');
+                 Yii::$app->getSession()->setFlash('comment', 'Ваш комментарий добавлен!');
                  return $this->redirect(['site/view','id'=>$id]);
+             }
+         }
+     }
+
+     public function actionQuestion()
+     {
+         $model = new QuestionForm();
+         if(Yii::$app->request->isPost)
+         {
+             $model->load(Yii::$app->request->post());
+             if($model->saveQuestion())
+             {
+                 Yii::$app->getSession()->setFlash('question', 'Спасибо за ваше сообщение — председатель ответит вам в течение трёх рабочих дней.');
+                 return $this->goBack();
              }
          }
      }
@@ -103,74 +121,19 @@ class SiteController extends Controller
      */
     public function actionView($id)
     {
-        $article = new Article();
 
+        $article = new Article();
         $article = $article->findOne($id);
         $populars = $article->getPopulars();
-        $comments = $article->getArticleComments();
-
-        $categories = Category::getAll();
-        $commentForm = new CommentForm();
-
+        $questionForm = new QuestionForm();
+        $countQuestion = Question::find()->count();
         $tags = $article->getArticleTags();
 
         $article->viewedCounter();
-        return $this->render('single',compact('article','tags','categories','populars','comments','commentForm'));
+        return $this->render('single',compact('article','tags','populars','questionForm','countQuestion'));
     }
 
-    /**
-     * Displays category page .
-     *
-     * @return string
-     */
-    public function actionCategory($id)
-    {
-      $data = Category::getArticlesByCategory($id);
-      $categories = Category::getAll();
-      $populars = Article::getPopulars();
 
-
-      return $this->render('category', [
-        "articles" => $data['articles'],
-        "pagination" => $data['pagination'] ,
-        "populars" => $populars ,
-        "categories" => $categories
-      ]);
-    }
-
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
 
     /**
      * Displays contact page.
