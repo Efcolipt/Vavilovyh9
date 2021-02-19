@@ -6,6 +6,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use yii\data\Pagination;
 use app\models\ImageUpload;
+use app\models\ArticleTag;
 use yii\web\UploadedFile;
 
 /**
@@ -41,8 +42,8 @@ class Article extends \yii\db\ActiveRecord
             [['title','status'], 'required'],
             [['title', 'description', 'content'], 'string'],
             [['title'], 'string' , 'max' => 255],
-            [['date'], 'date', 'format' => 'php:Y-m-d'],
-            [['date'], 'default', 'value' => date('Y-m-d')],
+            [['date'], 'date', 'format' => 'php:d.m.Y'],
+            [['date'], 'default', 'value' => date('d.m.Y')],
             [['image'], 'default', 'value' => '/uploads/no-image.png'],
             [['category_id'], 'number'],
             [['status'], 'boolean'],
@@ -96,22 +97,10 @@ class Article extends \yii\db\ActiveRecord
     public function beforeDelete()
     {
       $this->deleteImage();
+      $this->deleteImage();
       return parent::beforeDelete();
     }
 
-    public function getCategory()
-    {
-        return $this->hasOne(Category::className(), ['id' => 'category_id']);
-    }
-
-    public function saveCategory($category_id)
-    {
-        $category = Category::findOne($category_id);
-        if ($category != null) {
-          $this->link('category', $category);
-          return true;
-        }
-    }
     public  function getTags()
     {
         return $this->hasMany(Tag::className(), ['id' => 'tag_id'])
@@ -140,8 +129,8 @@ class Article extends \yii\db\ActiveRecord
 
     public function getDate()
     {
-      Yii::$app->formatter->locale = 'ru-Ru';
-      return Yii::$app->formatter->asDate($this->date);
+      Yii::$app->formatter->locale = 'ru-RU';
+      return Yii::$app->formatter->asDate($this->date,'long');
     }
 
     public static function getAll($pageSize = 4)

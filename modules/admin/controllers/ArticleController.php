@@ -8,6 +8,7 @@ use app\models\Article;
 use app\models\Tag;
 use app\models\ImageUpload;
 use app\models\ArticleSearch;
+use app\models\ArticleTag;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -74,15 +75,19 @@ class ArticleController extends Controller
         $imageUploadModel = new ImageUpload();
         $file = UploadedFile::getInstance($model,'image');
         if ($model->load(Yii::$app->request->post()) && $model->saveArticle()) {
+
             if ($file) {
               $model->saveImage($imageUploadModel->uploadFile($file , $model->image));
             }
 
+            $this->setTags($model->id);
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'selectedTags' => [],
+            'tags' => ArrayHelper::map(Tag::find()->all(), 'id', 'title'),
         ]);
     }
 
@@ -103,12 +108,23 @@ class ArticleController extends Controller
             if ($file) {
               $model->saveImage($imageUploadModel->uploadFile($file , $model->image));
             }
+            $this->setTags($id);
             return $this->redirect(['view', 'id' => $model->id]);
         }
-
         return $this->render('update', [
             'model' => $model,
+            'selectedTags' => $model->getSelectedTags(),
+            'tags' => ArrayHelper::map(Tag::find()->all(), 'id', 'title'),
         ]);
+    }
+
+
+    public function setTags($id)
+    {
+      $article = $this->findModel($id);
+      $tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
+      $tags = Yii::$app->request->post('tags');
+      $article->saveTags($tags);
     }
 
     /**
@@ -120,7 +136,9 @@ class ArticleController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->clearCurrentTags();
+        $model->delete();
 
         return $this->redirect(['index']);
     }
@@ -141,45 +159,5 @@ class ArticleController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    //
-    // public function actionSetImage($id){
-    //   $model = new ImageUpload;
-    //   if (Yii::$app->request->isPost) {
-    //     $article = $this->findModel($id);
-    //     $file = UploadedFile::getInstance($model,'image');
-    //     debug($file);
-    //     if ($article->saveImage($model->uploadFile($file , $article->image))) {
-    //       return $this->redirect(['view', 'id' => $article->id]);
-    //     }
-    //   }
-    //   return $this->render('image',compact('model'));
-    // }
 
-
-    public function actionSetCategory($id){
-      $article = $this->findModel($id);
-      $selectedCategory = ($article->category) ? $article->category->id : '0';
-      $categories = ArrayHelper::map(Category::find()->all(), 'id', 'title');
-      if (Yii::$app->request->isPost) {
-        $category = Yii::$app->request->post("category");
-        if ($article->saveCategory($category)) return $this->redirect(['view', 'id' => $article->id]);
-      }
-
-      return $this->render('category', compact("article","selectedCategory","categories"));
-    }
-
-    public function actionSetTags($id)
-    {
-      $article = $this->findModel($id);
-      $selectedTags = $article->getSelectedTags();
-      $tags = ArrayHelper::map(Tag::find()->all(), 'id', 'title');
-      if (Yii::$app->request->isPost) {
-        $tags = Yii::$app->request->post('tags');
-        $article->saveTags($tags);
-        return $this->redirect(['view', 'id' => $article->id]);
-      }
-
-      return $this->render('tags', compact('selectedTags','article','tags'));
-
-    }
 }

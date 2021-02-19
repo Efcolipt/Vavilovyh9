@@ -67,12 +67,10 @@ class SiteController extends Controller
     {
         $data = Article::getAll();
         $populars = Article::getPopulars();
-        $categories = Category::getAll();
         return $this->render('index', [
           "articles" => $data['articles'],
           "pagination" => $data['pagination'] ,
           "populars" => $populars ,
-          "categories" => $categories
         ]);
     }
 
@@ -90,7 +88,7 @@ class SiteController extends Controller
              $model->load(Yii::$app->request->post());
              if($model->saveComment($id))
              {
-                 Yii::$app->getSession()->setFlash('comment', 'Your comment will be added soon!');
+                 Yii::$app->getSession()->setFlash('comment', 'Ваш комментарий добавлен!');
                  return $this->redirect(['site/view','id'=>$id]);
              }
          }
@@ -103,74 +101,22 @@ class SiteController extends Controller
      */
     public function actionView($id)
     {
+
         $article = new Article();
 
         $article = $article->findOne($id);
         $populars = $article->getPopulars();
         $comments = $article->getArticleComments();
 
-        $categories = Category::getAll();
         $commentForm = new CommentForm();
 
         $tags = $article->getArticleTags();
 
         $article->viewedCounter();
-        return $this->render('single',compact('article','tags','categories','populars','comments','commentForm'));
+        return $this->render('single',compact('article','tags','populars','comments','commentForm'));
     }
 
-    /**
-     * Displays category page .
-     *
-     * @return string
-     */
-    public function actionCategory($id)
-    {
-      $data = Category::getArticlesByCategory($id);
-      $categories = Category::getAll();
-      $populars = Article::getPopulars();
 
-
-      return $this->render('category', [
-        "articles" => $data['articles'],
-        "pagination" => $data['pagination'] ,
-        "populars" => $populars ,
-        "categories" => $categories
-      ]);
-    }
-
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
 
     /**
      * Displays contact page.

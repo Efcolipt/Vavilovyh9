@@ -28,7 +28,7 @@ $this->title =  $article->title; ;
           </div>
           <p><?=$article->description;  ?></p>
           <hr>
-          <p>Тэги:
+          <p>Теги:
           <?php foreach ($tags as $tag): ?>
             <span><?=$tag->title; ?></span>
           <?php endforeach; ?>
@@ -44,7 +44,6 @@ $this->title =  $article->title; ;
       <?= $this->render('/partials/sidebar', [
         "articles" => $article,
         "populars" => $populars ,
-        "categories" => $categories
       ]); ?>
     </div>
   </div>

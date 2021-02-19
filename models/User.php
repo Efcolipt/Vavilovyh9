@@ -19,6 +19,9 @@ use yii\web\IdentityInterface;
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
+
+    const ROLE_USER = 0;
+    const ROLE_ADMIN = 10;
     /**
      * @inheritdoc
      */
@@ -33,7 +36,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['isAdmin'], 'integer'],
+            [['role'], 'integer'],
             [['name', 'email', 'password', 'photo'], 'string', 'max' => 255],
         ];
     }
@@ -48,8 +51,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'name' => 'Name',
             'email' => 'Email',
             'password' => 'Password',
-            'isAdmin' => 'Is Admin',
+            'role' => 'Role',
             'photo' => 'Photo',
+        ];
+    }
+
+    public static function roles()
+    {
+        return [
+            self::ROLE_USER => Yii::t('app', 'User'),
+            self::ROLE_ADMIN => Yii::t('app', 'Admin'),
         ];
     }
 
@@ -83,6 +94,27 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public static function findIdentityByAccessToken($token, $type = null)
     {
         // TODO: Implement findIdentityByAccessToken() method.
+    }
+
+  /**
+   * Название роли
+   * @param int $id
+   * @return mixed|null
+   */
+    public function getRoleName(int $id)
+    {
+        $list = self::roles();
+        return $list[$id] ?? null;
+    }
+
+    public function isAdmin()
+    {
+        return ($this->role == self::ROLE_ADMIN);
+    }
+
+    public function isUser()
+    {
+        return ($this->role == self::ROLE_USER);
     }
 
     public static function findByEmail($email)

@@ -3,7 +3,7 @@
 namespace app\modules\admin;
 use Yii;
 use yii\filters\AccessControl;
-
+use yii\helpers\Url;
 /**
  * admin module definition class
  */
@@ -25,18 +25,24 @@ class Module extends \yii\base\Module
         return [
             'access'    =>  [
                 'class' =>  AccessControl::className(),
-                'denyCallback'  =>  function($rule, $action)
-                {
-                    throw new \yii\web\NotFoundHttpException();
-                },
                 'rules' => [
-                  [
-                      'allow' => true,
-                      'matchCallback' =>  function($rule, $action)
-                      {
-                            return Yii::$app->user->identity->isAdmin;
-                      }
-                  ],
+                    [
+                        'allow' => false,
+                        'roles' => ['?'],
+                        'denyCallback' => function($rule, $action) {
+                            return Yii::$app->response->redirect(Url::toRoute(['/auth/login']));
+                        }
+                    ],
+                    [
+                        'actions' => [],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            /** @var User $user */
+                            $user = Yii::$app->user->getIdentity();
+                            return $user->isAdmin();
+                        }
+                    ],
                 ],
             ]
         ];
@@ -45,7 +51,5 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
-
-        // custom initialization code goes here
     }
 }
