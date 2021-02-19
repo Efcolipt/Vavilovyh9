@@ -6,7 +6,7 @@ use yii\helpers\Url;
 $this->title = 'Home';
 ?>
 
-<header class="header container">
+<header class="header header--main container">
   <div class="header__wrapper">
     <div class="header__logo">
       <h2 class="header__title">
@@ -21,7 +21,7 @@ $this->title = 'Home';
   <div class="header__wrapper header__wrapper--bottom">
     <div class="header__forms">
       <div class="header__link-box header__link-box--water-form">
-        <a href="#" class="header__link">Сдать показания на воду</a>
+        <a href="#" class="header__link js-open-popup">Сдать показания на воду</a>
       </div>
       <div class="header__link-box header__link-box--feedback">
         <a href="#" class="header__link">Oтзывы и предложения</a>
@@ -46,14 +46,15 @@ $this->title = 'Home';
     <ul class="news__list">
       <?php foreach ($articles as $article):?>
       <li class="news__item">
-          <time class="news__time"><?=$article->getDate();  ?></time>
-          <h3 class="news__title">
-            <?=$article->title;  ?>
-          </h3>
-          <div class="news__text">
-              <?=$article->content;  ?>
-          </div>
-          <a href="<?=Url::toRoute(['site/view', 'id' => $article->id]) ?>" class="news__link">Подробнее</a>
+        <time class="news__time" datetime="<?=$article->getDate();  ?>"><?=$article->getDate();  ?></time>
+        <h3 class="news__title">
+        <?=$article->title;  ?>
+        </h3>
+        <img src="<?=$article->getImage();  ?>" width="450" height="311" alt="Примеры ключей">
+        <p class="news__text">
+        <?=$article->content;  ?>
+        </p>
+        <a href="<?=Url::toRoute(['site/view', 'id' => $article->id]) ?>" class="news__link">Подробнее</a>
       </li>
       <?php endforeach; ?>
       <!-- <li class="news__item">

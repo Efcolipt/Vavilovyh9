@@ -17,6 +17,8 @@ class PublicAsset extends AssetBundle
     public $css = [
       "public/css/style.min.css",
     ];
-    public $js = [];
+    public $js = [
+      "public/js/script.min.js",
+    ];
     public $depends = [];
 }

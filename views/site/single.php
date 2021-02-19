@@ -7,7 +7,7 @@ $this->title =  $article->title;
   <div class="header__wrapper">
     <div class="header__logo">
       <h2 class="header__title">
-        <a href="/" class="header__t-link">ТСЖ «Вавиловых 9»</a>
+        <a href="<?= Url::toRoute(['site/index'])?>" class="header__t-link">ТСЖ «Вавиловых 9»</a>
       </h2>
     </div>
     <div class="header__contacts">
