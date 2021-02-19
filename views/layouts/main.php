@@ -56,22 +56,61 @@ PublicAsset::register($this);
   </ul>
 </header> -->
 <!-- Header section end -->
-<main class="main container">
+<div class="body-wrap">
+  
   <?=$content?>
-</main>
 <!-- Footer section -->
-<footer class="footer container">
-  <div class="footer__docs">
-    <a href="#" class="footer__link">Положение о защите и хранении персональных данных</a>
-    <a href="#" class="footer__link">Положение о ревизионной комиссии</a>
-  </div>
-  <div class="footer__wrapper">
-    <p class="footer__copyright">
-      © 2015 ... 2017
-    </p>
-    <a href="mailto:mail@vavilovyh9.ru" class="footer__link">mail@vavilovyh9.ru</a>
-  </div>
-</footer>
+  <footer class="footer container">
+    <div class="footer__docs">
+      <a href="#" class="footer__link">Положение о защите и хранении персональных данных</a>
+      <a href="#" class="footer__link">Положение о ревизионной комиссии</a>
+    </div>
+    <div class="footer__wrapper">
+      <p class="footer__copyright">
+        © 2015 ... <?= date("Y") ?>
+      </p>
+      <a href="mailto:mail@vavilovyh9.ru" class="footer__link">mail@vavilovyh9.ru</a>
+    </div>
+  </footer>
+  <section class="water-form">
+    <div class="water-form__wrapper">
+      <div class="water-form__close">X</div>
+      <h2 class="water-form__title">Укажите целые значения со счётчиков</h2>
+      <form action="" class="water-form__form">
+        <label class="water-form__box">
+          <input type="text" class="water-form__input water-form__input--number" name="hotwater">
+          <span class="water-form__label">Горячая вода</span>
+        </label>
+        <label class="water-form__box">
+          <input type="text" class="water-form__input water-form__input--number" name="coldwater">
+          <span class="water-form__label">Холодная вода</span>
+        </label>
+        <label class="water-form__box">
+          <input type="text" class="water-form__input water-form__input--number" name="appart">
+          <span class="water-form__label">Номер квартиры</span>
+        </label>
+        <label class="water-form__box">
+          <input type="text" class="water-form__input" name="name">
+          <span class="water-form__label">Фамилия</span>
+        </label>
+        <label class="water-form__box">
+          <input type="email" class="water-form__input" name="email">
+          <span class="water-form__label">E-mail</span>
+        </label>
+        <div class="water-form__inner">
+          <div class="water-form__btn-box autoform-submit-invalid">
+            <button class="water-form__btn" type="submit">Отправить</button>
+            <span class="autoform-form-text-error visually-hidden"></span>
+          </div>
+          <p class="water-form__desc">
+            Все поля обязательны <br>
+            для заполнения
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
 <!-- Footer section end -->
 
 

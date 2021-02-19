@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Article;
 use app\models\Category;
 use app\models\CommentForm;
+use app\models\QuestionForm;
 use Yii;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
@@ -67,10 +68,12 @@ class SiteController extends Controller
     {
         $data = Article::getAll();
         $populars = Article::getPopulars();
+        $questionForm = new QuestionForm();
         return $this->render('index', [
           "articles" => $data['articles'],
           "pagination" => $data['pagination'] ,
           "populars" => $populars ,
+          "questionForm" => $questionForm
         ]);
     }
 
@@ -94,6 +97,21 @@ class SiteController extends Controller
          }
      }
 
+     public function actionQuestion()
+     {
+         $model = new QuestionForm();
+
+         if(Yii::$app->request->isPost)
+         {
+             $model->load(Yii::$app->request->post());
+             if($model->saveQuestion())
+             {
+                 Yii::$app->getSession()->setFlash('question', 'Спасибо за ваше сообщение!');
+                 return $this->redirect(['site/index']);
+             }
+         }
+     }
+
     /**
      * Displays Single Page.
      *
@@ -103,17 +121,14 @@ class SiteController extends Controller
     {
 
         $article = new Article();
-
         $article = $article->findOne($id);
         $populars = $article->getPopulars();
-        $comments = $article->getArticleComments();
-
-        $commentForm = new CommentForm();
+        $questionForm = new QuestionForm();
 
         $tags = $article->getArticleTags();
 
         $article->viewedCounter();
-        return $this->render('single',compact('article','tags','populars','comments','commentForm'));
+        return $this->render('single',compact('article','tags','populars','questionForm'));
     }
 
 

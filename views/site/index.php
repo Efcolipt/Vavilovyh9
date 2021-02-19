@@ -5,7 +5,36 @@ use yii\widgets\LinkPager;
 use yii\helpers\Url;
 $this->title = 'Home';
 ?>
-<!-- Hero section -->
+
+<header class="header container">
+  <div class="header__wrapper">
+    <div class="header__logo">
+      <h2 class="header__title">
+        <a class="header__t-link">ТСЖ «Вавиловых 9»</a>
+      </h2>
+    </div>
+    <div class="header__contacts">
+      <p class="header__contact-desc">Диспетчер</p>
+      <a href="tel:+79111813960" class="header__phone">+7 (911) 181-39-60</a>
+    </div>
+  </div>
+  <div class="header__wrapper header__wrapper--bottom">
+    <div class="header__forms">
+      <div class="header__link-box header__link-box--water-form">
+        <a href="#" class="header__link">Сдать показания на воду</a>
+      </div>
+      <div class="header__link-box header__link-box--feedback">
+        <a href="#" class="header__link">Oтзывы и предложения</a>
+      </div>
+    </div>
+    <p class="header__reception">
+      Приём собственников:<br>
+      Управляющий — каждый четверг с 16:00 до 19:00.<br>
+      Председатель и бухгалтер — каждый первый и третий четверг месяца.
+    </p>
+  </div>
+</header>
+<main class="main container">
 <section class="main__blanks blanks">
   <h2 class="blanks__title">Бланки заявлений:</h2>
   <a href="#" class="blanks__link">Бесконтактный ключ</a>
@@ -15,40 +44,20 @@ $this->title = 'Home';
   <section class="main__news news">
     <h2 class="visually-hidden">Новости</h2>
     <ul class="news__list">
+      <?php foreach ($articles as $article):?>
       <li class="news__item">
-        <time class="news__time" datetime="2020-06-28">28 июня 2020</time>
-        <h3 class="news__title">
-          Итоги общего собрания собственников
-        </h3>
-        <p class="news__text">
-          18 июня завершилось годовое общее собрание собственников жилья, которое проводилось в форме
-          очно-заочного
-          голосования.
-        </p>
-        <p class="news__text">
-          Счётная комиссия проверила бюллетени и подсчитала голоса. Кворум собрания состоялся. По большинству
-          вопросов
-          приняты положительные решения большинством голосов.
-        </p>
-        <a href="#" class="news__link">Протокол № 1 от 28 июня 2020 года</a>
+        <a href="<?=Url::toRoute(['site/view', 'id' => $article->id]) ?>">
+          <time class="news__time"><?=$article->getDate();  ?></time>
+          <h3 class="news__title">
+            <?=$article->title;  ?>
+          </h3>
+          <div class="news__text">
+              <?=$article->content;  ?>
+          </div>
+      </a>
       </li>
-      <li class="news__item">
-        <time class="news__time" datetime="2020-06-13">13 июня 2020</time>
-        <h3 class="news__title">
-          Итоги общего собрания членов ТСЖ
-        </h3>
-        <p class="news__text">
-          11 июня завершилось годовое отчётно-перевыборное собрание членов ТСЖ «Вавиловых 9», которое проводилось
-          в
-          форме очно-заочного голосования.
-        </p>
-        <p class="news__text">
-          Счётная комиссия проверила бюллетени и подсчитала голоса. Кворум собрания состоялся. По всем вопросам
-          приняты положительные решения большинством голосов.
-        </p>
-        <a href="#" class="news__link">Выписка из Протокола № 1 от 13 июня 2020 года</a>
-      </li>
-      <li class="news__item">
+      <?php endforeach; ?>
+      <!-- <li class="news__item">
         <time class="news__time" datetime="2020-05-11">11 мая 2020</time>
         <h3 class="news__title">
           21 мая общее собрание собственников и членов ТСЖ
@@ -144,80 +153,23 @@ $this->title = 'Home';
             </li>
           </ul>
         </div>
-      </li>
-        <time class="news__time" datetime="2017-09-10">10 сентября 2017</time>
-        <h3 class="news__title">
-          Бесконтактные ключи к парадной двери
-        </h3>
-        <img src="/img/upload/10092017.png" width="450" height="311" alt="Примеры ключей">
-        <p class="news__text">
-          <a href="#" class="news__link">Бланк заявления</a> можно скачать на сайте, либо взять бланк у
-          диспетчера.
-        </p>
-        <p class="news__text">
-          В заявлении укажите модель ключа и необходимое количество. Стоимость ключей будет включена в следующую
-          квитанцию по квартплате.
-        </p>
-        <p class="news__text">
-          После оплаты квитанции, управляющая передаст вам закодированные ключи.
-        </p>
-      </li>
+      </li> -->
     </ul>
   </section>
-  <section class="main__question question">
-    <h2 class="question__title">Задайте вопрос председателю</h2>
-    <p class="question__desc">Вы получите ответ в течение трёх рабочих дней.</p>
-    <form action="/" method="POST" class="question__form">
-      <label for="question" class="visually-hidden">Ваш вопрос</label>
-      <textarea placeholder="Напишите, что вы хотите спросить у председателя ТСЖ или предложить для нашего дома"
-        id="question" name="question" data-field-type="text-all" class="question__input question__input--text"
-        name="question"></textarea>
-      <label for="name" class="visually-hidden">Ваше имя</label>
-      <input type="text" placeholder="Как вас зовут" data-field-type="text-all" class="question__input"
-        name="name" id="name">
-      <label for="apartment" class="visually-hidden">Из какой вы квартиры</label>
-      <input type="text" placeholder="Из какой вы квартиры" data-field-type="text-all" class="question__input"
-        name="apartment" id="apartment">
-      <label for="contact" class="visually-hidden">Как с вами связаться?</label>
-      <input type="text" placeholder="Как с вами связаться?" data-field-type="text-all" class="question__input"
-        name="contact" id="contact">
-      <div class="question__inner">
-        <div class="question__btn-box autoform-submit-invalid">
-          <button class="question__btn" type="submit">Отправить</button>
-          <span class="autoform-form-text-error visually-hidden"></span>
-        </div>
-        <p class="question__desc question__desc--bottom">
-          Все поля обязательны <br>
-          для заполнения
-        </p>
-      </div>
-    </form>
-    <p class="question__note">
-      Мы уже получили 313 сообщений
-    </p>
-  </section>
-</div>
-<section class="hero-section">
-  <div class="hero-slider owl-carousel">
-    <?php foreach ($articles as $article):?>
-    <div class="hero-item set-bg" data-setbg="<?=$article->getImage();  ?>">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-10 offset-lg-1">
-            <h2><?=$article->title;  ?></h2>
-            <p><?=$article->content;  ?></p>
-            <a href="<?=Url::toRoute(['site/view', 'id' => $article->id]) ?>" class="site-btn">Read More</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <?php endforeach; ?>
-  </div>
-</section>
-<!-- Hero section end -->
+  <?=$this->render('/partials/question',  [
+       'questionForm'=>$questionForm,
+   ]); ?>
 
+  </main>
+
+  <?=
+     LinkPager::widget([
+          'pagination' => $pagination,
+      ]);
+      ?>
+</div>
 <!-- Blog section -->
-<section class="blog-section spad">
+<!-- <section class="blog-section spad">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 blog-posts">
@@ -230,7 +182,6 @@ $this->title = 'Home';
               <h4><?=$article->title;  ?></h4>
               <div class="post-metas">
                 <div class="post-meta">By <?= $article->author->name?></div>
-                <?php if(!empty($article->category->title)): ?><div class="post-meta">in <a href="<?= Url::toRoute(['site/category', 'id' => $article->category->id]);  ?>"><?=$article->category->title;  ?></a></div><?php endif; ?>
                 <div class="post-meta"><?=(int)$article->viewed;  ?> Shows</div>
               </div>
               <p><?=$article->content;  ?></p>
@@ -239,17 +190,9 @@ $this->title = 'Home';
           </article>
           <?php endforeach; ?>
         </div>
-        <?=
-           LinkPager::widget([
-                'pagination' => $pagination,
-            ]);
-            ?>
+
       </div>
-      <?= $this->render('/partials/sidebar', [
-        "articles" => $articles,
-        "populars" => $populars ,
-      ]); ?>
+
     </div>
   </div>
-</section>
-<!-- Blog section end -->
+</section> -->
