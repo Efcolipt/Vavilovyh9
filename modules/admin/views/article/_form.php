@@ -21,8 +21,11 @@ use kartik\date\DatePicker;
     <?= $form->field($model, 'content')->textarea(['rows' => 6,'class' => 'form-control HTML']) ?>
 
     <?= $form->field($model, 'image')->fileInput(['maxlength' => true]) ?>
+    <div class="form-group ">
+      <label class="control-label" >Теги</label>
+      <?= Html::dropDownList('tags', $selectedTags, $tags, ['class' => 'form-control', 'multiple' => true]);  ?>
 
-    <?= Html::dropDownList('tags', $selectedTags, $tags, ['class' => 'form-control', 'multiple' => true]);  ?>
+    </div>
     <?= $form->field($model, 'date')->widget(DatePicker::classname(),
     [
       'name' => 'date',
