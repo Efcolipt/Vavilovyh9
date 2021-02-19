@@ -67,7 +67,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-      debug(phpinfo());
         $data = Article::getAll();
         $populars = Article::getPopulars();
         $questionForm = new QuestionForm();
