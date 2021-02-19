@@ -34,7 +34,7 @@ PublicAsset::register($this);
 
 
 <!-- Header section -->
-<!-- <header class="header-section">
+<header class="header-section">
   <a href="<?= Url::toRoute(['site/index'])?>" class="site-logo">
     <img src="/public/img/logo.png" alt="logo">
   </a>
@@ -54,10 +54,10 @@ PublicAsset::register($this);
       </li>
   <?php endif;?>
   </ul>
-</header> -->
+</header>
 <!-- Header section end -->
 <div class="body-wrap">
-  
+
   <?=$content?>
 <!-- Footer section -->
   <footer class="footer container">

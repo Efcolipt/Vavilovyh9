@@ -46,7 +46,6 @@ $this->title = 'Home';
     <ul class="news__list">
       <?php foreach ($articles as $article):?>
       <li class="news__item">
-        <a href="<?=Url::toRoute(['site/view', 'id' => $article->id]) ?>">
           <time class="news__time"><?=$article->getDate();  ?></time>
           <h3 class="news__title">
             <?=$article->title;  ?>
@@ -54,7 +53,7 @@ $this->title = 'Home';
           <div class="news__text">
               <?=$article->content;  ?>
           </div>
-      </a>
+          <a href="<?=Url::toRoute(['site/view', 'id' => $article->id]) ?>" class="news__link">Подробнее</a>
       </li>
       <?php endforeach; ?>
       <!-- <li class="news__item">
@@ -158,6 +157,7 @@ $this->title = 'Home';
   </section>
   <?=$this->render('/partials/question',  [
        'questionForm'=>$questionForm,
+       'countQuestion'=>$countQuestion,
    ]); ?>
 
   </main>

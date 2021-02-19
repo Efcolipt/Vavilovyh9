@@ -6,6 +6,7 @@ use app\models\Article;
 use app\models\Category;
 use app\models\CommentForm;
 use app\models\QuestionForm;
+use app\models\Question;
 use Yii;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
@@ -69,11 +70,13 @@ class SiteController extends Controller
         $data = Article::getAll();
         $populars = Article::getPopulars();
         $questionForm = new QuestionForm();
+        $countQuestion = Question::find()->count();
         return $this->render('index', [
           "articles" => $data['articles'],
           "pagination" => $data['pagination'] ,
           "populars" => $populars ,
-          "questionForm" => $questionForm
+          "questionForm" => $questionForm,
+          "countQuestion" => $countQuestion,
         ]);
     }
 
@@ -124,11 +127,11 @@ class SiteController extends Controller
         $article = $article->findOne($id);
         $populars = $article->getPopulars();
         $questionForm = new QuestionForm();
-
+        $countQuestion = Question::find()->count();
         $tags = $article->getArticleTags();
 
         $article->viewedCounter();
-        return $this->render('single',compact('article','tags','populars','questionForm'));
+        return $this->render('single',compact('article','tags','populars','questionForm','countQuestion'));
     }
 
 

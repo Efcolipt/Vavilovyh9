@@ -30,6 +30,6 @@
 </div>
   <?php \yii\widgets\ActiveForm::end();?>
   <p class="question__note">
-    Мы уже получили 313 сообщений
+    Мы уже получили <?=$countQuestion ?> сообщений
   </p>
 </section>

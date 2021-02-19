@@ -40,8 +40,10 @@ AppAsset::register($this);
          'options' => ['class' => 'navbar-nav navbar-right'],
          'items' => [
              ['label' => 'Статьи', 'url' => ['/admin/article/index']],
-             ['label' => 'Комментарии', 'url' => ['/admin/comment/index']],
-             ['label' => 'Теги', 'url' => ['/admin/tag/index']]
+             // ['label' => 'Комментарии', 'url' => ['/admin/comment/index']],
+             ['label' => 'Теги', 'url' => ['/admin/tag/index']],
+             ['label' => 'Вопросы', 'url' => ['/admin/question/index']]
+
          ],
      ]);
      NavBar::end();

@@ -121,6 +121,7 @@ $this->title =  $article->title;
   </section>
   <?=$this->render('/partials/question',  [
        'questionForm'=>$questionForm,
+       'countQuestion'=>$countQuestion,
    ]); ?>
 </div>
 </main>
