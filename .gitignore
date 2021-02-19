@@ -37,7 +37,5 @@ tests/_support/_generated
 composer.lock
 
 /runtime
-/web/ckeditor
-/web/ckfinder
 /web/uploads
 /web/.htaccess
