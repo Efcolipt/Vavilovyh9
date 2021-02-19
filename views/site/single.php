@@ -31,7 +31,7 @@ $this->title =  $article->title;
       <?php foreach ($tags as $tag): ?>
         <span><?=$tag->title; ?></span>
       <?php endforeach; ?>
-      <div class="news__subitem">
+      <!-- <div class="news__subitem">
         <h4 class="news__subtitle">
           Годовое отчётно-перевыборное собрание членов ТСЖ
         </h4>
@@ -116,7 +116,7 @@ $this->title =  $article->title;
               собственников</a>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </section>
   <?=$this->render('/partials/question',  [
