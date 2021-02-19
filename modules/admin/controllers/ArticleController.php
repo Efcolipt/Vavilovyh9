@@ -83,7 +83,7 @@ class ArticleController extends Controller
             $this->setTags($model->id);
             return $this->redirect(['view', 'id' => $model->id]);
         }
-
+        $model->date = date('d.m.Y');
         return $this->render('create', [
             'model' => $model,
             'selectedTags' => [],

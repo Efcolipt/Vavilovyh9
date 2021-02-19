@@ -27,7 +27,6 @@ use kartik\date\DatePicker;
     [
       'name' => 'date',
       'type' => DatePicker::TYPE_COMPONENT_PREPEND ,
-      'value' => date('d.m.Y'),
       'removeButton' => false,
       'pluginOptions' => [
         'format' => 'dd.mm.yyyy',

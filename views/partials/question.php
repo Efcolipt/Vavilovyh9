@@ -26,21 +26,31 @@
     </p>
   </div>
   <div class="answer">
-    <div class="answer__item">
+    <div class="js-preloader answer__preloader-wrapper">
+      <div class="answer__preloader">
+      </div>
+    </div>
+    <div class="answer__item js-fail">
       <div class="answer__box">
         <div class="answer__inner">
           <p class="answer__text">
-            <?php if(Yii::$app->session->getFlash('question')): ?>
-              <?= Yii::$app->session->getFlash('question'); ?>
-            <?php else: ?>
-              Не удалось отправить форму, попробуйте через некоторое время. Мы уже знаем об этом и скоро решим
-              проблему.
-            <?php endif; ?>
+            Не удалось отправить форму, попробуйте через некоторое время. Мы уже знаем об этом и скоро решим
+            проблему.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="answer__item js-success">
+      <div class="answer__box">
+        <div class="answer__inner">
+          <p class="answer__text">
+            Спасибо за ваше сообщение — председатель ответит вам в течение трёх рабочих дней.
           </p>
         </div>
       </div>
     </div>
   </div>
+
 
   <?php \yii\widgets\ActiveForm::end();?>
   <p class="question__note">
