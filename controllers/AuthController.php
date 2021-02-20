@@ -35,14 +35,20 @@ class AuthController extends Controller
      */
     public function actionLogout()
     {
-        $back = Yii::$app->request->referrer;
+        if (!Yii::$app->user->isGuest) {
+            return $this->goBack();
+        }
         Yii::$app->user->logout();
-        return $this->redirect($back);
+        return  $this->goBack();;
     }
 
 
     public function actionSignup()
     {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goBack();
+        }
+
         $model = new SignupForm();
 
         if(Yii::$app->request->isPost)

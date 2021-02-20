@@ -30,6 +30,8 @@ class Module extends \yii\base\Module
                         'allow' => false,
                         'roles' => ['?'],
                         'denyCallback' => function($rule, $action) {
+                            $request = Yii::$app->getRequest();
+                            Yii::$app->getUser()->setReturnUrl($request->getUrl());
                             return Yii::$app->response->redirect(Url::toRoute(['/auth/login']));
                         }
                     ],
