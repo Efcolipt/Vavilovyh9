@@ -25,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -33,7 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'description:ntext',
             'content:ntext',
-            'date:datetime',
+            [
+                'attribute' => 'date',
+                'format' => 'raw',
+                'value' => function($data){
+                    return $data->date ? changeLanguage($data->date) : $data->date;
+                }
+            ],
             'image',
             'viewed',
             'user_id',

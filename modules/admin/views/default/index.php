@@ -31,7 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'description:ntext',
             'content:ntext',
-            'date:datetime',
+            [
+                'attribute' => 'date',
+                'format' => 'raw',
+                'value' => function($data){
+                    return $data->date ? changeLanguage($data->date) : $data->date;
+                }
+            ],
             [
                 'attribute' => 'status',
                 'format' => 'raw',

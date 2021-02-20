@@ -129,8 +129,7 @@ class Article extends \yii\db\ActiveRecord
 
     public function getDate()
     {
-      Yii::$app->formatter->locale = 'ru-RU';
-      return Yii::$app->formatter->asDate($this->date,'long');
+      return changeLanguage($this->date);
     }
 
     public static function getAll($pageSize = 4)

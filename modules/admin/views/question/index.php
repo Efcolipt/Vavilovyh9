@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <td><?= $question->text?></td>
                         <td><?= $question->apartment?></td>
                         <td><?= $question->contact?></td>
-                        <td><?= Yii::$app->formatter->asDate($question->date,'long')?></td>
+                        <td><?= changeLanguage($question->date)?></td>
                         <td>
                             <a class="btn btn-danger" href="<?= Url::toRoute(['question/delete', 'id' => $question->id]); ?>">Удалить</a>
                         </td>

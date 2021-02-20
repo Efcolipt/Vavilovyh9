@@ -17,8 +17,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Добвить статью', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <?php Yii::$app->formatter->locale = 'ru-RU'; ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -30,7 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'description:ntext',
             'content:ntext',
-            'date:datetime',
+            [
+                'attribute' => 'date',
+                'format' => 'raw',
+                'value' => function($data){
+                    return $data->date ? changeLanguage($data->date) : $data->date;
+                }
+            ],
             [
                 'attribute' => 'status',
                 'format' => 'raw',
