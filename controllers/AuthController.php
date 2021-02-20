@@ -35,11 +35,8 @@ class AuthController extends Controller
      */
     public function actionLogout()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goBack();
-        }
         Yii::$app->user->logout();
-        return  $this->goBack();;
+        return $this->goBack();
     }
 
 
