@@ -22,7 +22,7 @@ class WaterForm extends Model
             [['apartment'], 'integer', 'message' => 'Укажите квартиру'],
             [['coldwater'], 'integer', 'message' => 'Укажите холодную воду'],
             [['hotwater'], 'integer', 'message' => 'Укажите горячую воду'],
-            [['surname'],  'string', 'length' => [2,50], 'message' => 'Введите корректную фамилию'],
+            [['surname'],  'string', 'min' => 2, 'max' => 50, 'tooLong' => 'Фамилия слишком большая', 'tooShort' => 'Фамилия слишком маленькая'],
             [['email'],  'email'],
         ];
     }
@@ -36,19 +36,10 @@ class WaterForm extends Model
         $water->hotwater = $this->hotwater;
         $water->apartment = $this->apartment;
         $water->date = date('d.m.Y');
-        $this->sendEmailWater();
         return $water->save();
 
     }
-    public function sendEmailWater()
-    {
-      Yii::$app->mailer->compose()
-          ->setFrom([Yii::$app->params['senderEmail'] => 'Письмо с сайта'])
-          ->setTo(Yii::$app->params['adminEmail'])
-          ->setSubject('Тема сообщения')
-          ->setTextBody('Текст сообщения')
-          ->send();
-    }
+
 
 
 }
