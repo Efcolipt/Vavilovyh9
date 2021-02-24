@@ -128,23 +128,19 @@ class SiteController extends Controller
 
          if (Yii::$app->request->isAjax) {
            if ($model->load(Yii::$app->request->post())) {
-             if ($model->validate()) {
-               if($model->saveQuestion()) {
+             if ($model->validate() && $model->saveQuestion()) {
+                 $this->sendEmail($model);
                   return [
                       "data" => $model,
                       "error" => false
                   ];
-                }
-              } else {
-                return [
-                    "data" => $model->errors,
-                    "error" => true
-                ];
               }
-
            }
          }
-
+         return [
+             "data" => $model->errors,
+             "error" => true
+         ];
      }
 
      public function actionWater()
@@ -155,24 +151,31 @@ class SiteController extends Controller
 
          if (Yii::$app->request->isAjax) {
            if ($model->load(Yii::$app->request->post())) {
-             if ($model->validate()) {
-               if($model->saveWater()) {
+             if ($model->validate() && $model->saveWater()) {
+                 $this->sendEmail($model);
                   return [
                       "data" => $model,
                       "error" => false
                   ];
-                }
-              } else {
-                return [
-                    "data" => $model->errors,
-                    "error" => true
-                ];
               }
-
            }
          }
-
+         return [
+             "data" => $model->errors,
+             "error" => true
+         ];
      }
+
+     public function sendEmail($data)
+     {
+       Yii::$app->mailer->compose()
+           ->setFrom([Yii::$app->params['senderEmail'] => 'Письмо с сайта'])
+           ->setTo(Yii::$app->params['adminEmail'])
+           ->setSubject('Тема сообщения')
+           ->setTextBody('Текст сообщения')
+           ->send();
+     }
+
     /**
      * Displays Single Page.
      *
