@@ -19,7 +19,7 @@ class QuestionForm extends Model
             [['text','apartment','name'], 'required','message' => 'Заполните поле'],
             [['apartment'], 'integer', 'message' => 'Укажите квартиру'],
             [['name'],  'string', 'length' => [2,50], 'message' => 'Введите корректное имя'],
-            ['contact','match', 'pattern' => '/^\+7[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}$/', 'message' => 'Введите корректный номер (+70000000000)'],
+            ['contact','match', 'pattern' => '/^[+0-9]{1}[(0-9]{2}[0-9]{2}[)0-9]{2}[0-9]{4,7}$/', 'message' => 'Введите корректный номер (+70000000000)'],
             [['text'], 'string', 'length' => [10,255], 'message' => 'Текст должен быть не меньше 10 и не больше 255 символов  ']
         ];
     }
