@@ -21,7 +21,19 @@ $config = [
             'datetimeFormat' => 'php:d M Y',
             'locale' => 'ru'
         ],
-          'request' => [
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'encryption' => 'ssl',
+                'host' => 'smtp.yandex.ru',
+                'port' => '465',
+                'username' => 'mailer@d-idei.ru',
+                'password' => 'pyQjob-0qyzsa-kexvej',
+            ],
+        ],
+        'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'HeJiNhp5ETxCCvl54Bw49Ia58phTTAcA',
         ],

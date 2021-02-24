@@ -32,7 +32,19 @@ class QuestionForm extends Model
         $question->contact = $this->contact;
         $question->apartment = $this->apartment;
         $question->date = date('d.m.Y');
+        $this->sendEmailQuestion();
         return $question->save();
 
     }
+    public function sendEmailQuestion()
+    {
+      Yii::$app->mailer->compose()
+          ->setFrom(['mailer@d-idei.ru' => 'Письмо с сайта'])
+          ->setTo('efcolipt@yandex.ru')
+          ->setSubject('Тема сообщения')
+          ->setTextBody('Текст сообщения')
+          ->send();
+    }
+
+
 }
