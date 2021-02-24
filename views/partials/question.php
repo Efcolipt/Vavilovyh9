@@ -16,13 +16,13 @@
 
     ]]);?>
   <label for="question" class="visually-hidden">Ваш вопрос</label>
-  <?= $form->field($questionForm, 'text')->textarea(['class'=>'question__input question__input--text','id' => 'question','data-field-type'=> 'text-all','placeholder'=>'Напишите, что вы хотите спросить у председателя ТСЖ или предложить для нашего дома'])->label(false);?>
+  <?= $form->field($questionForm, 'text')->textarea(['class'=>'question__input question__input--text','id' => 'question','data-field-type'=> 'text','placeholder'=>'Напишите, что вы хотите спросить у председателя ТСЖ или предложить для нашего дома'])->label(false);?>
   <label for="name" class="visually-hidden">Как вас зовут</label>
   <?= $form->field($questionForm, 'name')->textInput(['class'=>'question__input','id' => 'name','data-field-type'=> 'text-all','placeholder'=>'Как вас зовут'])->label(false);?>
   <label for="apartment" class="visually-hidden">Из какой вы квартиры</label>
-  <?= $form->field($questionForm, 'apartment')->textInput(['class'=>'question__input','id' => 'apartment','data-field-type'=> 'text-all','placeholder'=>'Из какой вы квартиры'])->label(false);?>
+  <?= $form->field($questionForm, 'apartment')->textInput(['class'=>'question__input','id' => 'apartment','data-field-type'=> 'number','placeholder'=>'Из какой вы квартиры'])->label(false);?>
   <label for="contact" class="visually-hidden">Как с вами связаться?</label>
-  <?= $form->field($questionForm, 'contact')->textInput(['class'=>'question__input','id' => 'contact','data-field-type'=> 'email-phone','placeholder'=>'Как с вами связаться?'])->label(false);?>
+  <?= $form->field($questionForm, 'contact')->textInput(['class'=>'question__input','id' => 'contact','data-field-type'=> 'email','placeholder'=>'Как с вами связаться?'])->label(false);?>
   <div class="question__inner">
     <div class="question__btn-box autoform-submit-invalid">
       <button class="question__btn" type="submit">Отправить</button>
