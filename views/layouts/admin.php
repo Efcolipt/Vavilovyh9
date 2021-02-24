@@ -42,7 +42,8 @@ AppAsset::register($this);
              ['label' => 'Статьи', 'url' => ['/admin/article/index']],
              // ['label' => 'Комментарии', 'url' => ['/admin/comment/index']],
              ['label' => 'Теги', 'url' => ['/admin/tag/index']],
-             ['label' => 'Вопросы', 'url' => ['/admin/question/index']]
+             ['label' => 'Вопросы', 'url' => ['/admin/question/index']],
+             ['label' => 'Счётчик воды', 'url' => ['/admin/water/index']]
 
          ],
      ]);

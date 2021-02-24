@@ -14,14 +14,20 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
-      'formatter' => [
-            'class' => 'yii\i18n\Formatter',
-            'dateFormat' => 'dd MMMM yyyy',
-            'defaultTimeZone' => 'Europe/Moscow',
-            'datetimeFormat' => 'php:d M Y',
-            'locale' => 'ru'
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => Swift_MailTransport::class,
+                'extraParams' => null,
+                'encryption' => 'ssl',
+                'host' => 'smtp.yandex.ru',
+                'port' => '465',
+                'username' => 'mailer@d-idei.ru',
+                'password' => 'pyQjob-0qyzsa-kexvej',
+            ],
         ],
-          'request' => [
+        'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'HeJiNhp5ETxCCvl54Bw49Ia58phTTAcA',
         ],
