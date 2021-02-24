@@ -17,8 +17,8 @@ class m210224_104132_create_water_table extends Migration
           'surname'=>$this->string(),
           'email'=>$this->string(),
           'apartment'=>$this->integer(),
-          'hotwater'=>$this->integer(),
-          'coldwater'=>$this->integer(),
+          'hotwater'=>$this->float(),
+          'coldwater'=>$this->float(),
           'date'=>$this->string(),
         ]);
     }

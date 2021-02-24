@@ -128,7 +128,8 @@ class SiteController extends Controller
 
          if (Yii::$app->request->isAjax) {
            if ($model->load(Yii::$app->request->post())) {
-             if ($model->validate() && $model->saveQuestion()) {
+             if ($model->validate()) {
+                 $model->saveQuestion();
                  $this->sendEmail($model);
                   return [
                       "data" => $model,
@@ -138,7 +139,7 @@ class SiteController extends Controller
            }
          }
          return [
-             "data" => $model->errors,
+             "data" => !empty($model->errors) ? $model->errors : null,
              "error" => true
          ];
      }
@@ -151,7 +152,8 @@ class SiteController extends Controller
 
          if (Yii::$app->request->isAjax) {
            if ($model->load(Yii::$app->request->post())) {
-             if ($model->validate() && $model->saveWater()) {
+             if ($model->validate()) {
+                 $model->saveWater();
                  $this->sendEmail($model);
                   return [
                       "data" => $model,
@@ -161,7 +163,7 @@ class SiteController extends Controller
            }
          }
          return [
-             "data" => $model->errors,
+             "data" => !empty($model->errors) ? $model->errors : null,
              "error" => true
          ];
      }
