@@ -19,7 +19,7 @@ class QuestionForm extends Model
             [['text','apartment','name'], 'required','message' => 'Заполните все поля'],
             [['apartment'], 'integer', 'message' => 'Укажите квартиру'],
             [['name'],'string',   'min' => 2, 'max' => 50, 'tooLong' => 'Имя слишком большое', 'tooShort' => 'Имя слишком маленькое'],
-            ['contact','match', 'pattern' => '/^[+0-9]{1}[(0-9]{2}[0-9]{2}[)0-9]{2}[0-9]{4,7}$/', 'message' => 'Введите корректный номер (+70000000000)'],
+            ['contact','match', 'pattern' => '/\S+\@\S+\.[a-z]+/i', 'message' => 'Введите корректный Email'],
             [['text'],'string',  'min' => 10, 'max' => 254, 'tooLong' => 'Текст слишком большой', 'tooShort' => 'Текст слишком маленький']
         ];
     }
