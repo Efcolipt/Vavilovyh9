@@ -168,6 +168,7 @@ $this->title = 'Home';
           'pagination' => $pagination,
       ]);
       ?>
+      <?=$this->render('/partials/water',['waterForm'=>$waterForm]); ?>
 </div>
 <!-- Blog section -->
 <!-- <section class="blog-section spad">

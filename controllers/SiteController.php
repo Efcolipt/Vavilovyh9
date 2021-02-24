@@ -6,6 +6,7 @@ use app\models\Article;
 use app\models\Category;
 use app\models\CommentForm;
 use app\models\QuestionForm;
+use app\models\WaterForm;
 use app\models\Question;
 use Yii;
 use yii\data\Pagination;
@@ -87,12 +88,14 @@ class SiteController extends Controller
         $data = Article::getAll();
         $populars = Article::getPopulars();
         $questionForm = new QuestionForm();
+        $waterForm = new WaterForm();
         $countQuestion = Question::find()->count();
         return $this->render('index', [
           "articles" => $data['articles'],
           "pagination" => $data['pagination'] ,
           "populars" => $populars ,
           "questionForm" => $questionForm,
+          "waterForm" => $waterForm,
           "countQuestion" => $countQuestion,
         ]);
     }
@@ -127,6 +130,33 @@ class SiteController extends Controller
            if ($model->load(Yii::$app->request->post())) {
              if ($model->validate()) {
                if($model->saveQuestion()) {
+                  return [
+                      "data" => $model,
+                      "error" => false
+                  ];
+                }
+              } else {
+                return [
+                    "data" => $model->errors,
+                    "error" => true
+                ];
+              }
+
+           }
+         }
+
+     }
+
+     public function actionWater()
+     {
+         $model = new WaterForm();
+
+         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+         if (Yii::$app->request->isAjax) {
+           if ($model->load(Yii::$app->request->post())) {
+             if ($model->validate()) {
+               if($model->saveWater()) {
                   return [
                       "data" => $model,
                       "error" => false
