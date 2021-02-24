@@ -125,18 +125,23 @@ class SiteController extends Controller
 
          if (Yii::$app->request->isAjax) {
            if ($model->load(Yii::$app->request->post())) {
-             if($model->saveQuestion()) {
-               return [
-                   "data" => $model,
-                   "error" => false
-               ];
-             }
+             if ($model->validate()) {
+               if($model->saveQuestion()) {
+                  return [
+                      "data" => $model,
+                      "error" => false
+                  ];
+                }
+              } else {
+                return [
+                    "data" => $model->errors,
+                    "error" => true
+                ];
+              }
+
            }
          }
-           return [
-               "data" => null,
-               "error" => true
-           ];
+
      }
     /**
      * Displays Single Page.

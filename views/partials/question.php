@@ -4,7 +4,7 @@
   <p class="question__desc">Вы получите ответ в течение трёх рабочих дней.</p>
   <?php $form = \yii\widgets\ActiveForm::begin(
     ['action' => ['site/question'],
-    'enableAjaxValidation'   => true,
+    'enableAjaxValidation'   => false,
     'enableClientValidation' => false,
     'validateOnBlur'         => false,
     'validateOnType'         => false,
