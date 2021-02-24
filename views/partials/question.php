@@ -4,7 +4,13 @@
   <p class="question__desc">Вы получите ответ в течение трёх рабочих дней.</p>
   <?php $form = \yii\widgets\ActiveForm::begin(
     ['action' => ['site/question'],
-    'options' => ['class'=>'question__form js-form', 'role'=>'form', 'data-action'=>'site/question']]);?>
+    'enableAjaxValidation' => true,
+    'enableClientValidation' => false,
+    'options' => ['class'=>'question__form js-form',
+      'role'=>'form',
+      'data-action'=>'site/question',
+
+    ]]);?>
   <label for="question" class="visually-hidden">Ваш вопрос</label>
   <?= $form->field($questionForm, 'text')->textarea(['class'=>'question__input question__input--text','id' => 'question','data-field-type'=> 'text-all','placeholder'=>'Напишите, что вы хотите спросить у председателя ТСЖ или предложить для нашего дома'])->label(false);?>
   <label for="name" class="visually-hidden">Как вас зовут</label>

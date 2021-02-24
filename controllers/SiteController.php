@@ -120,17 +120,25 @@ class SiteController extends Controller
      public function actionQuestion()
      {
          $model = new QuestionForm();
-         if(Yii::$app->request->isPost)
-         {
-             $model->load(Yii::$app->request->post());
-             if($model->saveQuestion())
-             {
-                 Yii::$app->getSession()->setFlash('question', 'Спасибо за ваше сообщение — председатель ответит вам в течение трёх рабочих дней.');
-                 return $this->goBack();
-             }
-         }
-     }
 
+         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+         
+         if (Yii::$app->request->isAjax) {
+           if ($model->load(Yii::$app->request->post())) {
+             if($model->saveQuestion()) {
+               return [
+                   "data" => $model,
+                   "error" => false
+               ];
+             }
+           }
+         }
+
+           return [
+               "data" => null,
+               "error" => true
+           ];
+     }
     /**
      * Displays Single Page.
      *

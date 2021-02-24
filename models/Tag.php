@@ -28,6 +28,7 @@ class Tag extends \yii\db\ActiveRecord
         return [
             [['title'], 'string', 'max' => 255],
             [['color'], 'string', 'max' => 255],
+            [['title','color'], 'required']
         ];
     }
 
@@ -47,6 +48,6 @@ class Tag extends \yii\db\ActiveRecord
         return $this->hasMany(Article::className(), ['id' => 'article_id'])
             ->viaTable('article_tag', ['tag_id' => 'id']);
     }
-    
+
 
 }
