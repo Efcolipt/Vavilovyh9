@@ -122,7 +122,7 @@ class SiteController extends Controller
          $model = new QuestionForm();
 
          Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-         
+
          if (Yii::$app->request->isAjax) {
            if ($model->load(Yii::$app->request->post())) {
              if($model->saveQuestion()) {
@@ -133,7 +133,6 @@ class SiteController extends Controller
              }
            }
          }
-
            return [
                "data" => null,
                "error" => true
