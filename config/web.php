@@ -14,13 +14,6 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
-      'formatter' => [
-            'class' => 'yii\i18n\Formatter',
-            'dateFormat' => 'dd MMMM yyyy',
-            'defaultTimeZone' => 'Europe/Moscow',
-            'datetimeFormat' => 'php:d M Y',
-            'locale' => 'ru'
-        ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'useFileTransport' => false,
