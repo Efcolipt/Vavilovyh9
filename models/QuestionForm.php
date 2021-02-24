@@ -39,8 +39,8 @@ class QuestionForm extends Model
     public function sendEmailQuestion()
     {
       Yii::$app->mailer->compose()
-          ->setFrom(['mailer@d-idei.ru' => 'Письмо с сайта'])
-          ->setTo('efcolipt@yandex.ru')
+          ->setFrom([Yii::$app->params['senderEmail'] => 'Письмо с сайта'])
+          ->setTo(Yii::$app->params['adminEmail'])
           ->setSubject('Тема сообщения')
           ->setTextBody('Текст сообщения')
           ->send();
