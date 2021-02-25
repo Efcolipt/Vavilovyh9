@@ -170,8 +170,8 @@ class SiteController extends Controller
 
      public function sendEmail($data)
      {
-       Yii::$app->mailer->compose()
-           ->setFrom([Yii::$app->params['senderEmail'] => 'Письмо с сайта'])
+       Yii::$app->getMailer()->compose()
+           //->setFrom([Yii::$app->params['senderEmail'] => 'Письмо с сайта'])
            ->setTo(Yii::$app->params['adminEmail'])
            ->setSubject('Тема сообщения')
            ->setTextBody('Текст сообщения')
