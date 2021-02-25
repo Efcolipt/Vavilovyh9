@@ -130,7 +130,7 @@ class SiteController extends Controller
            if ($model->load(Yii::$app->request->post())) {
              if ($model->validate()) {
                  $model->saveQuestion();
-                 $this->sendEmail($model);
+                 $this->sendEmail('question','Новый вопрос',$model);
                   return [
                       "data" => $model,
                       "error" => false
@@ -154,7 +154,7 @@ class SiteController extends Controller
            if ($model->load(Yii::$app->request->post())) {
              if ($model->validate()) {
                  $model->saveWater();
-                 $this->sendEmail($model);
+                 $this->sendEmail('water','Показания счётчиков',$model);
                   return [
                       "data" => $model,
                       "error" => false
@@ -168,13 +168,14 @@ class SiteController extends Controller
          ];
      }
 
-     public function sendEmail($data)
+     public function sendEmail($view, $subject, $params = [])
      {
-       Yii::$app->getMailer()->compose()
-           //->setFrom([Yii::$app->params['senderEmail'] => 'Письмо с сайта'])
+       Yii::$app->getMailer()->compose([
+         'text' => 'views/' . $view . '-text',
+         'html' => 'views/' . $view . '-html',
+       ],$params)
            ->setTo(Yii::$app->params['adminEmail'])
-           ->setSubject('Тема сообщения')
-           ->setTextBody('Текст сообщения')
+           ->setSubject($subject)
            ->send();
      }
 
