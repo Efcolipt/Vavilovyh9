@@ -130,7 +130,7 @@ class SiteController extends Controller
            if ($model->load(Yii::$app->request->post())) {
              if ($model->validate()) {
                  $model->saveQuestion();
-                 $this->sendEmail('question','Новый вопрос',$model);
+                 $this->sendEmail('question','Новый вопрос',(array) $model);
                   return [
                       "data" => $model,
                       "error" => false
@@ -154,7 +154,7 @@ class SiteController extends Controller
            if ($model->load(Yii::$app->request->post())) {
              if ($model->validate()) {
                  $model->saveWater();
-                 $this->sendEmail('water','Показания счётчиков',$model);
+                 $this->sendEmail('water','Показания счётчиков',(array) $model);
                   return [
                       "data" => $model,
                       "error" => false
