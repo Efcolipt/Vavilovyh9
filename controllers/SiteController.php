@@ -171,7 +171,6 @@ class SiteController extends Controller
      public function sendEmail($view, $subject, $params = [])
      {
        Yii::$app->getMailer()->compose([
-         'text' => 'views/' . $view . '-text',
          'html' => 'views/' . $view . '-html',
        ],$params)
            ->setTo(Yii::$app->params['adminEmail'])
